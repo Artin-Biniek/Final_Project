@@ -1,6 +1,0 @@
-{
-<Scenario>:Fixtures included with the decorator will apply to all other steps that  they share a scenario with.
-<Given>:You can define `Django fixtures`_ using a function decorator. It is merely
-a convenient way to keep fixtures close to your steps.
-<Then>:per feature/scenario
-}
