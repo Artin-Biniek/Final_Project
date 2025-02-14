@@ -1,4 +1,5 @@
-EXAMPLE: Use Soft Assertions in behave
+{
+Scenario:EXAMPLE: Use Soft Assertions in behave
 =============================================================================
 
 :RELATED TO: `discussion #1094`_
@@ -13,7 +14,8 @@ HINT:
   Use ContextManager solution instead, like: ``with soft_assertions(): ...``
 
 
-Bootstrap
+
+Given:Bootstrap
 -----------------------------------------------------------------------------
 
 ASSUMPTIONS:
@@ -38,7 +40,7 @@ Install the required Python packages in the virtualenv::
     $ pip install -r py.requirements.txt
 
 
-Run the Example
+Then:Run the Example
 -----------------------------------------------------------------------------
 
 ::
@@ -95,3 +97,5 @@ Run the Example
     11 steps passed, 4 failed, 1 skipped, 0 undefined
 
 .. _`discussion #1094`: https://github.com/behave/behave/discussions/1094
+}
+

@@ -1,4 +1,5 @@
-.. _docid.fixtures:
+{
+Scenario:.. _docid.fixtures:
 
 Fixtures
 ==============================================================================
@@ -54,8 +55,7 @@ Providing a Fixture
     * a `pytest.fixture`_
     * the `scope guard`_ idiom
 
-
-Using a Fixture
+Given:Using a Fixture
 ---------------
 
 In many cases, the usage of a fixture is triggered by the ``fixture-tag``
@@ -107,7 +107,7 @@ Therefore, any manual cleanup handling in the ``after_tag()`` hook is not necess
 
 
 
-Realistic Example
+Then:Realistic Example
 ~~~~~~~~~~~~~~~~~
 
 A more realistic example by using a fixture registry is shown below:
@@ -305,5 +305,10 @@ Solution 2:
             fixture_call_params(bar, name="bar"),
         ])
         return the_composite
+
+}
+
+
+
 
 

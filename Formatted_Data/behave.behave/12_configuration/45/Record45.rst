@@ -1,4 +1,6 @@
-Link:https://behave.readthedocs.io/en/latest/behave/#configuration-files
+{
+
+Scenario:Link:https://behave.readthedocs.io/en/latest/behave/#configuration-files
 Configuration Files
 Configuration files for behave are called either “.behaverc”, “behave.ini”, “setup.cfg”, “tox.ini”, or “pyproject.toml” (your preference) and are located in one of three places:
 
@@ -24,7 +26,8 @@ logging_clear_handlers = true
 logging_filter = "-suds"
 NOTE: toml does not support ‘%’ interpolations.
 
-Configuration Parameter Types
+
+Given:Configuration Parameter Types
 The following types are supported (and used):
 
 text
@@ -159,3 +162,7 @@ Only run scenarios tagged with “wip”. Additionally: use the “plain” form
 
 lang : text
 Use keywords for a language other than English.
+
+Then:Refer to description under command-line arguments
+
+}

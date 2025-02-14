@@ -1,4 +1,6 @@
-.. _tutorial:
+
+{
+Scenario:.. _tutorial:
 
 ========
 Tutorial
@@ -37,7 +39,8 @@ file called "tutorial.py" containing:
     def step_impl(context):
         assert context.failed is False
 
-Run behave::
+
+  Given:Run behave::
 
     % behave
     Feature: showing off behave # features/tutorial.feature:1
@@ -145,8 +148,7 @@ to take the name of their preceding step, so:
 In this case *behave* will look for a step definition for
 ``"Then fall off a cliff"``.
 
-
-Scenario Outlines
+Then:Scenario Outlines
 -----------------
 
 Sometimes a scenario should be run with a number of variables giving a set
@@ -761,3 +763,8 @@ by using the user-specific configuration data. A user can:
             # NOTE: Use IPython debugger, same for pdb (basic python debugger).
             import ipdb
             ipdb.post_mortem(step.exc_traceback)
+
+
+}
+
+

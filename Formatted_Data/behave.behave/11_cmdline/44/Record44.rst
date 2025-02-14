@@ -1,8 +1,10 @@
-Link:https://behave.readthedocs.io/en/latest/behave/#command-line-arguments
+{
+Scenario:Link:https://behave.readthedocs.io/en/latest/behave/#command-line-arguments
 Command-Line Arguments
 You may see the same information presented below at any time using behave -h.
 
--C, --no-color
+
+Given:-C, --no-color
 Disable colored mode.
 
 --color
@@ -148,3 +150,9 @@ Show help for tag expressions.
 
 --version
 Show version.
+
+
+
+Then:Refer to descriptive under command-line-arguments
+
+}

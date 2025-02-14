@@ -1,4 +1,5 @@
-.. _id.appendix.formatters:
+{
+Scenario:.. _id.appendix.formatters:
 
 ========================
 Formatters and Reporters
@@ -64,7 +65,7 @@ tags.location  dry-run  Shows tags and the location where they are used.
     dry-run (``--dry-run`` command-line option) or normal mode.
 
 
-User-Defined Formatters
+Given:User-Defined Formatters
 -----------------------
 
 Behave allows you to provide your own formatter (class)::
@@ -114,7 +115,8 @@ teamcity       :pypi:`behave-teamcity`, a formatter for JetBrains TeamCity CI te
 
 The usage of a custom formatter can be simplified if a formatter alias is defined for.
 
-EXAMPLE:
+
+Then:EXAMPLE:
 
 .. code-block:: ini
 
@@ -189,3 +191,11 @@ For example:
 
 .. _`selenium.webdriver.firefox.webdriver.WebDriver.get_full_page_screenshot_as_png`: https://www.selenium.dev/selenium/docs/api/py/webdriver_firefox/selenium.webdriver.firefox.webdriver.html?highlight=screenshot#selenium.webdriver.firefox.webdriver.WebDriver.get_full_page_screenshot_as_png
 .. _`selenium.webdriver.remote.webdriver.WebDriver.get_screenshot_as_base64`: https://www.selenium.dev/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html?highlight=get_screenshot_as_base64#selenium.webdriver.remote.webdriver.WebDriver.get_screenshot_as_base64
+
+
+}
+
+
+
+
+

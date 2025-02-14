@@ -1,4 +1,5 @@
-Tag-Expressions v2
+{
+Scenario:Tag-Expressions v2
 -------------------------------------------------------------------------------
 
 Tag-Expressions v2 are based on :pypi:`cucumber-tag-expressions` with some extensions:
@@ -29,7 +30,7 @@ Tag-Expressions v2 are based on :pypi:`cucumber-tag-expressions` with some exten
     # HINT: Boolean expressions can be grouped with parenthesis.
     (@a or @b) and not @c
 
-COMMAND-LINE EXAMPLE:
+Given:COMMAND-LINE EXAMPLE:
 
 .. code-block:: sh
     :caption: USING: Tag-Expressions v2 with ``behave``
@@ -55,7 +56,7 @@ COMMAND-LINE EXAMPLE:
     * :pypi:`cucumber-tag-expressions` (Python package)
 
 
-Tag Matching with Tag-Expressions
+Then:Tag Matching with Tag-Expressions
 -------------------------------------------------------------------------------
 
 Tag-Expressions v2 support **partial string/tag matching** with wildcards.
@@ -143,3 +144,6 @@ Use **Tag-Expressions v2** instead.
 .. note::
 
     Tag-Expressions v1 support will be dropped in ``behave v1.4.0``.
+
+}
+

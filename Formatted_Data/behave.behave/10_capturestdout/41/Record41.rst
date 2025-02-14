@@ -1,3 +1,5 @@
+{
+Scenario:
 Link:https://behave.readthedocs.io/en/latest/api/#logging-capture
 Link2:https://behave.readthedocs.io/en/latest/api/#behave.runner.Context.captured
 Logging Capture
@@ -11,7 +13,8 @@ Captured logging events are stored on the attribute buffer:
 buffer
 This is a list of captured logging events as logging.LogRecords.
 
-By default the format of the messages will be:
+
+Given:By default the format of the messages will be:
 
 '%(levelname)s:%(name)s:%(message)s'
 This may be overridden using standard logging formatter names in the configuration variable logging_format.
@@ -56,7 +59,8 @@ Decorator to wrap an environment file function in log file capture.
 
 It configures the logging capture using the behave context, the first argument to the function being decorated (so don’t use this to decorate something that doesn’t have context as the first argument).
 
-The basic usage is:
+
+Then:The basic usage is:
 
 The function prints any captured logging (at the level determined by the log_level configuration setting) directly to stdout, regardless of error conditions.
 
@@ -67,3 +71,5 @@ The decorator takes an optional “level” keyword argument which limits the le
 
 This would limit the logging captured to just ERROR and above, and thus only display logged events if they are interesting.
 If any output capture is enabled, provides access to a Captured object that contains a snapshot of all captured data (stdout/stderr/log).
+
+}
