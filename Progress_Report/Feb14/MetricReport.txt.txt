@@ -1,0 +1,1071 @@
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+Token indices sequence length is longer than the specified maximum sequence length for this model (1346 > 512). Running this sequence through the model will result in indexing errors
+-----START OF RECORD 1 -------
+Input text: {
+Scenario:Tag-Expressions v2
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 are based on :pypi:`cucumber-tag-expressions` with some extensions:
+
+* Tag-Expressions v2 provide `boolean logic expression`
+  (with ``and``, ``or`` and ``not`` operators and parenthesis for grouping expressions)
+* Tag-Expressions v2 are far more readable and composable than Tag-Expressions v1
+* Some boolean-logic-expressions where not possible with Tag-Expressions v1
+* Therefore, Tag-Expressions v2 supersedes the old-style tag-expressions.
+
+
+.. code-block:: gherkin
+    :caption: TAG-EXPRESSION EXAMPLES
+
+    # -- EXAMPLE 1: Select features/scenarios that have the tags: @a and @b
+    @a and @b
+
+    # -- EXAMPLE 2: Select features/scenarios that have the tag: @a or @b
+    @a or @b
+
+    # -- EXAMPLE 3: Select features/scenarios that do not have the tag: @a
+    not @a
+
+    # -- EXAMPLE 4: Select features/scenarios that have the tags: @a but not @b
+    @a and not @b
+
+    # -- EXAMPLE 5: Select features/scenarios that have the tags: (@a or @b) but not @c
+    # HINT: Boolean expressions can be grouped with parenthesis.
+    (@a or @b) and not @c
+
+Given:COMMAND-LINE EXAMPLE:
+
+.. code-block:: sh
+    :caption: USING: Tag-Expressions v2 with ``behave``
+
+    # -- SELECT-BY-TAG-EXPRESSION (with tag-expressions v2):
+    # Select all features / scenarios with both "@foo" and "@bar" tags.
+    $ behave --tags="@foo and @bar" features/
+
+    # -- EXAMPLE: Use default_tags from config-file "behave.ini".
+    # Use placeholder "{config.tags}" to refer to this tag-expression.
+    # HERE: config.tags = "not (@xfail or @not_implemented)"
+    $ behave --tags="(@foo or @bar) and {config.tags}" --tags-help
+    ...
+    CURRENT TAG_EXPRESSION: ((foo or bar) and not (xfail or not_implemented))
+
+    # -- EXAMPLE: Uses Tag-Expression diagnostics with --tags-help option
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help --verbose
+
+.. seealso::
+
+    * https://docs.cucumber.io/cucumber/api/#tag-expressions
+    * :pypi:`cucumber-tag-expressions` (Python package)
+
+
+Then:Tag Matching with Tag-Expressions
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 support **partial string/tag matching** with wildcards.
+This supports tag-expressions:
+
+=================== =========== =========== ===================================================
+Tag Matching Idiom  Example 1   Example 2   Description
+=================== =========== =========== ===================================================
+``tag.starts_with`` ``@foo.*``  ``foo.*``   Search for tags that start with a ``prefix``.
+``tag.ends_with``   ``@*.one``  ``*.one``   Search for tags that end with a ``suffix``.
+``tag.contains``    ``@*foo*``  ``*foo*``   Search for tags that contain a ``part``.
+=================== =========== =========== ===================================================
+
+.. code-block:: gherkin
+    :caption: FILE: features/one.feature
+
+    Feature: Alice
+
+      @foo.one
+      Scenario: Alice.1
+        ...
+
+      @foo.two
+      Scenario: Alice.2
+        ...
+
+      @bar
+      Scenario: Alice.3
+        ...
+
+The following command-line will select all features / scenarios with tags
+that start with "@foo.":
+
+.. code-block:: sh
+    :caption: USAGE EXAMPLE: Run behave with tag-matching expressions
+
+    $ behave -f plain --tags="@foo.*" features/one.feature
+    Feature: Alice
+
+      Scenario: Alice.1
+        ...
+
+      Scenario: Alice.2
+        ...
+
+    # -- HINT: Only Alice.1 and Alice.2 are matched (not: Alice.3).
+
+.. note::
+
+    * Filename matching wildcards are supported.
+      See :mod:`fnmatch` (Unix style filename matching).
+
+    * The tag matching functionality is an extension to :pypi:`cucumber-tag-expressions`.
+
+
+Select the Tag-Expression Version to Use
+-------------------------------------------------------------------------------
+
+The tag-expression version, that should be used by :pypi:`behave`,
+can be specified in the :pypi:`behave` config-file.
+
+This allows a user to select:
+
+* Tag-Expressions v1 (if needed)
+* Tag-Expressions v2 when it is feasible
+
+EXAMPLE:
+
+.. code-block:: ini
+    :caption: FILE: behave.ini
+
+    # SPECIFY WHICH TAG-EXPRESSION-PROTOCOL SHOULD BE USED:
+    #   SUPPORTED VALUES: v1, v2, auto_detect
+    #   CURRENT DEFAULT:  auto_detect
+    [behave]
+    tag_expression_protocol = v1    # -- Use Tag-Expressions v1.
+
+
+Tag-Expressions v1
+-------------------------------------------------------------------------------
+
+Tag-Expressions v1 are becoming deprecated (but are currently still supported).
+Use **Tag-Expressions v2** instead.
+
+.. note::
+
+    Tag-Expressions v1 support will be dropped in ``behave v1.4.0``.
+
+}
+
+
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+Scenario: Select @foo
+    Given: the tag expression "@foo"
+    Then: the tag expression selects elements with tags:
+        | tags         | selected? |
+        |              |   no      |
+        | @foo         |   yes     |
+        | @other       |   no      |
+        | @foo @other  |   yes     |
+
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 1 -------
+-----START OF RECORD 2 -------
+Input text: {
+Scenario:Tag-Expressions v2
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 are based on :pypi:`cucumber-tag-expressions` with some extensions:
+
+* Tag-Expressions v2 provide `boolean logic expression`
+  (with ``and``, ``or`` and ``not`` operators and parenthesis for grouping expressions)
+* Tag-Expressions v2 are far more readable and composable than Tag-Expressions v1
+* Some boolean-logic-expressions where not possible with Tag-Expressions v1
+* Therefore, Tag-Expressions v2 supersedes the old-style tag-expressions.
+
+
+.. code-block:: gherkin
+    :caption: TAG-EXPRESSION EXAMPLES
+
+    # -- EXAMPLE 1: Select features/scenarios that have the tags: @a and @b
+    @a and @b
+
+    # -- EXAMPLE 2: Select features/scenarios that have the tag: @a or @b
+    @a or @b
+
+    # -- EXAMPLE 3: Select features/scenarios that do not have the tag: @a
+    not @a
+
+    # -- EXAMPLE 4: Select features/scenarios that have the tags: @a but not @b
+    @a and not @b
+
+    # -- EXAMPLE 5: Select features/scenarios that have the tags: (@a or @b) but not @c
+    # HINT: Boolean expressions can be grouped with parenthesis.
+    (@a or @b) and not @c
+
+Given:COMMAND-LINE EXAMPLE:
+
+.. code-block:: sh
+    :caption: USING: Tag-Expressions v2 with ``behave``
+
+    # -- SELECT-BY-TAG-EXPRESSION (with tag-expressions v2):
+    # Select all features / scenarios with both "@foo" and "@bar" tags.
+    $ behave --tags="@foo and @bar" features/
+
+    # -- EXAMPLE: Use default_tags from config-file "behave.ini".
+    # Use placeholder "{config.tags}" to refer to this tag-expression.
+    # HERE: config.tags = "not (@xfail or @not_implemented)"
+    $ behave --tags="(@foo or @bar) and {config.tags}" --tags-help
+    ...
+    CURRENT TAG_EXPRESSION: ((foo or bar) and not (xfail or not_implemented))
+
+    # -- EXAMPLE: Uses Tag-Expression diagnostics with --tags-help option
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help --verbose
+
+.. seealso::
+
+    * https://docs.cucumber.io/cucumber/api/#tag-expressions
+    * :pypi:`cucumber-tag-expressions` (Python package)
+
+
+Then:Tag Matching with Tag-Expressions
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 support **partial string/tag matching** with wildcards.
+This supports tag-expressions:
+
+=================== =========== =========== ===================================================
+Tag Matching Idiom  Example 1   Example 2   Description
+=================== =========== =========== ===================================================
+``tag.starts_with`` ``@foo.*``  ``foo.*``   Search for tags that start with a ``prefix``.
+``tag.ends_with``   ``@*.one``  ``*.one``   Search for tags that end with a ``suffix``.
+``tag.contains``    ``@*foo*``  ``*foo*``   Search for tags that contain a ``part``.
+=================== =========== =========== ===================================================
+
+.. code-block:: gherkin
+    :caption: FILE: features/one.feature
+
+    Feature: Alice
+
+      @foo.one
+      Scenario: Alice.1
+        ...
+
+      @foo.two
+      Scenario: Alice.2
+        ...
+
+      @bar
+      Scenario: Alice.3
+        ...
+
+The following command-line will select all features / scenarios with tags
+that start with "@foo.":
+
+.. code-block:: sh
+    :caption: USAGE EXAMPLE: Run behave with tag-matching expressions
+
+    $ behave -f plain --tags="@foo.*" features/one.feature
+    Feature: Alice
+
+      Scenario: Alice.1
+        ...
+
+      Scenario: Alice.2
+        ...
+
+    # -- HINT: Only Alice.1 and Alice.2 are matched (not: Alice.3).
+
+.. note::
+
+    * Filename matching wildcards are supported.
+      See :mod:`fnmatch` (Unix style filename matching).
+
+    * The tag matching functionality is an extension to :pypi:`cucumber-tag-expressions`.
+
+
+Select the Tag-Expression Version to Use
+-------------------------------------------------------------------------------
+
+The tag-expression version, that should be used by :pypi:`behave`,
+can be specified in the :pypi:`behave` config-file.
+
+This allows a user to select:
+
+* Tag-Expressions v1 (if needed)
+* Tag-Expressions v2 when it is feasible
+
+EXAMPLE:
+
+.. code-block:: ini
+    :caption: FILE: behave.ini
+
+    # SPECIFY WHICH TAG-EXPRESSION-PROTOCOL SHOULD BE USED:
+    #   SUPPORTED VALUES: v1, v2, auto_detect
+    #   CURRENT DEFAULT:  auto_detect
+    [behave]
+    tag_expression_protocol = v1    # -- Use Tag-Expressions v1.
+
+
+Tag-Expressions v1
+-------------------------------------------------------------------------------
+
+Tag-Expressions v1 are becoming deprecated (but are currently still supported).
+Use **Tag-Expressions v2** instead.
+
+.. note::
+
+    Tag-Expressions v1 support will be dropped in ``behave v1.4.0``.
+
+}
+
+
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Tag expression with 0..1 tags
+    Given the model elements with name and tags:
+        | name | tags         | Comment |
+        | S0   |              | Untagged    |
+        | S1   | @foo         | With 1 tag  |
+        | S2   | @other       |             |
+        | S3   | @foo @other  | With 2 tags |
+    And note that "are all combinations of 0..2 tags"
+    Then the tag expression selects model elements with:
+        | tag expression | selected?      | Case comment |
+        |                | S0, S1, S2, S3 | Select all (empty tag expression) |
+        |  @foo          | S1, S3         | Select @foo                       |
+        |  not @foo      | S0, S2         | not @foo, selects untagged elements |
+    But note that "tag expression variants are also supported"
+    And the tag expression selects model elements with:
+        | tag expression | selected?      | Case comment |
+        |  foo           | S1, S3         |     @foo: '@' is optional     |
+        | not foo        | S0, S2         | not @foo: '@' is optional     |
+        | not @foo       | S0, S2         | not @foo: '~@' is supported   |
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 2 -------
+-----START OF RECORD 3 -------
+Input text: {
+Scenario:Tag-Expressions v2
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 are based on :pypi:`cucumber-tag-expressions` with some extensions:
+
+* Tag-Expressions v2 provide `boolean logic expression`
+  (with ``and``, ``or`` and ``not`` operators and parenthesis for grouping expressions)
+* Tag-Expressions v2 are far more readable and composable than Tag-Expressions v1
+* Some boolean-logic-expressions where not possible with Tag-Expressions v1
+* Therefore, Tag-Expressions v2 supersedes the old-style tag-expressions.
+
+
+.. code-block:: gherkin
+    :caption: TAG-EXPRESSION EXAMPLES
+
+    # -- EXAMPLE 1: Select features/scenarios that have the tags: @a and @b
+    @a and @b
+
+    # -- EXAMPLE 2: Select features/scenarios that have the tag: @a or @b
+    @a or @b
+
+    # -- EXAMPLE 3: Select features/scenarios that do not have the tag: @a
+    not @a
+
+    # -- EXAMPLE 4: Select features/scenarios that have the tags: @a but not @b
+    @a and not @b
+
+    # -- EXAMPLE 5: Select features/scenarios that have the tags: (@a or @b) but not @c
+    # HINT: Boolean expressions can be grouped with parenthesis.
+    (@a or @b) and not @c
+
+Given:COMMAND-LINE EXAMPLE:
+
+.. code-block:: sh
+    :caption: USING: Tag-Expressions v2 with ``behave``
+
+    # -- SELECT-BY-TAG-EXPRESSION (with tag-expressions v2):
+    # Select all features / scenarios with both "@foo" and "@bar" tags.
+    $ behave --tags="@foo and @bar" features/
+
+    # -- EXAMPLE: Use default_tags from config-file "behave.ini".
+    # Use placeholder "{config.tags}" to refer to this tag-expression.
+    # HERE: config.tags = "not (@xfail or @not_implemented)"
+    $ behave --tags="(@foo or @bar) and {config.tags}" --tags-help
+    ...
+    CURRENT TAG_EXPRESSION: ((foo or bar) and not (xfail or not_implemented))
+
+    # -- EXAMPLE: Uses Tag-Expression diagnostics with --tags-help option
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help --verbose
+
+.. seealso::
+
+    * https://docs.cucumber.io/cucumber/api/#tag-expressions
+    * :pypi:`cucumber-tag-expressions` (Python package)
+
+
+Then:Tag Matching with Tag-Expressions
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 support **partial string/tag matching** with wildcards.
+This supports tag-expressions:
+
+=================== =========== =========== ===================================================
+Tag Matching Idiom  Example 1   Example 2   Description
+=================== =========== =========== ===================================================
+``tag.starts_with`` ``@foo.*``  ``foo.*``   Search for tags that start with a ``prefix``.
+``tag.ends_with``   ``@*.one``  ``*.one``   Search for tags that end with a ``suffix``.
+``tag.contains``    ``@*foo*``  ``*foo*``   Search for tags that contain a ``part``.
+=================== =========== =========== ===================================================
+
+.. code-block:: gherkin
+    :caption: FILE: features/one.feature
+
+    Feature: Alice
+
+      @foo.one
+      Scenario: Alice.1
+        ...
+
+      @foo.two
+      Scenario: Alice.2
+        ...
+
+      @bar
+      Scenario: Alice.3
+        ...
+
+The following command-line will select all features / scenarios with tags
+that start with "@foo.":
+
+.. code-block:: sh
+    :caption: USAGE EXAMPLE: Run behave with tag-matching expressions
+
+    $ behave -f plain --tags="@foo.*" features/one.feature
+    Feature: Alice
+
+      Scenario: Alice.1
+        ...
+
+      Scenario: Alice.2
+        ...
+
+    # -- HINT: Only Alice.1 and Alice.2 are matched (not: Alice.3).
+
+.. note::
+
+    * Filename matching wildcards are supported.
+      See :mod:`fnmatch` (Unix style filename matching).
+
+    * The tag matching functionality is an extension to :pypi:`cucumber-tag-expressions`.
+
+
+Select the Tag-Expression Version to Use
+-------------------------------------------------------------------------------
+
+The tag-expression version, that should be used by :pypi:`behave`,
+can be specified in the :pypi:`behave` config-file.
+
+This allows a user to select:
+
+* Tag-Expressions v1 (if needed)
+* Tag-Expressions v2 when it is feasible
+
+EXAMPLE:
+
+.. code-block:: ini
+    :caption: FILE: behave.ini
+
+    # SPECIFY WHICH TAG-EXPRESSION-PROTOCOL SHOULD BE USED:
+    #   SUPPORTED VALUES: v1, v2, auto_detect
+    #   CURRENT DEFAULT:  auto_detect
+    [behave]
+    tag_expression_protocol = v1    # -- Use Tag-Expressions v1.
+
+
+Tag-Expressions v1
+-------------------------------------------------------------------------------
+
+Tag-Expressions v1 are becoming deprecated (but are currently still supported).
+Use **Tag-Expressions v2** instead.
+
+.. note::
+
+    Tag-Expressions v1 support will be dropped in ``behave v1.4.0``.
+
+}
+
+
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Tag expression with two tags (@foo, @bar)
+    Given the model elements with name and tags:
+        | name | tags             | Comment |
+        | S0   |                  | Untagged    |
+        | S1   | @foo             | With 1 tag  |
+        | S2   | @bar             |             |
+        | S3   | @other           |             |
+        | S4   | @foo @bar        | With 2 tags |
+        | S5   | @foo @other      |             |
+        | S6   | @bar @other      |             |
+        | S7   | @foo @bar @other | With 3 tags |
+    And note that "are all combinations of 0..3 tags"
+    Then the tag expression selects model elements with:
+        | tag expression         | selected?                      | Case |
+        |                        | S0, S1, S2, S3, S4, S5, S6, S7 | Select all            |
+        |  @foo or @bar          | S1, S2, S4, S5, S6, S7         | @foo or @bar          |
+        |  @foo or not @bar      | S0, S1, S3, S4, S5, S7         | @foo or not @bar      |
+        |  not @foo or not @bar  | S0, S1, S2, S3, S5, S6         | not @foo or @not @bar |
+        |  @foo  and @bar        | S4, S7                         | @foo and @bar         |
+        |  @foo and     not @bar | S1, S5                         | @foo and not @bar     |
+        |  not @foo and not @bar | S0, S3                         | not @foo and not @bar |
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 3 -------
+-----START OF RECORD 4 -------
+Input text: {
+Scenario:Tag-Expressions v2
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 are based on :pypi:`cucumber-tag-expressions` with some extensions:
+
+* Tag-Expressions v2 provide `boolean logic expression`
+  (with ``and``, ``or`` and ``not`` operators and parenthesis for grouping expressions)
+* Tag-Expressions v2 are far more readable and composable than Tag-Expressions v1
+* Some boolean-logic-expressions where not possible with Tag-Expressions v1
+* Therefore, Tag-Expressions v2 supersedes the old-style tag-expressions.
+
+
+.. code-block:: gherkin
+    :caption: TAG-EXPRESSION EXAMPLES
+
+    # -- EXAMPLE 1: Select features/scenarios that have the tags: @a and @b
+    @a and @b
+
+    # -- EXAMPLE 2: Select features/scenarios that have the tag: @a or @b
+    @a or @b
+
+    # -- EXAMPLE 3: Select features/scenarios that do not have the tag: @a
+    not @a
+
+    # -- EXAMPLE 4: Select features/scenarios that have the tags: @a but not @b
+    @a and not @b
+
+    # -- EXAMPLE 5: Select features/scenarios that have the tags: (@a or @b) but not @c
+    # HINT: Boolean expressions can be grouped with parenthesis.
+    (@a or @b) and not @c
+
+Given:COMMAND-LINE EXAMPLE:
+
+.. code-block:: sh
+    :caption: USING: Tag-Expressions v2 with ``behave``
+
+    # -- SELECT-BY-TAG-EXPRESSION (with tag-expressions v2):
+    # Select all features / scenarios with both "@foo" and "@bar" tags.
+    $ behave --tags="@foo and @bar" features/
+
+    # -- EXAMPLE: Use default_tags from config-file "behave.ini".
+    # Use placeholder "{config.tags}" to refer to this tag-expression.
+    # HERE: config.tags = "not (@xfail or @not_implemented)"
+    $ behave --tags="(@foo or @bar) and {config.tags}" --tags-help
+    ...
+    CURRENT TAG_EXPRESSION: ((foo or bar) and not (xfail or not_implemented))
+
+    # -- EXAMPLE: Uses Tag-Expression diagnostics with --tags-help option
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help
+    $ behave --tags="(@foo and @bar) or @baz" --tags-help --verbose
+
+.. seealso::
+
+    * https://docs.cucumber.io/cucumber/api/#tag-expressions
+    * :pypi:`cucumber-tag-expressions` (Python package)
+
+
+Then:Tag Matching with Tag-Expressions
+-------------------------------------------------------------------------------
+
+Tag-Expressions v2 support **partial string/tag matching** with wildcards.
+This supports tag-expressions:
+
+=================== =========== =========== ===================================================
+Tag Matching Idiom  Example 1   Example 2   Description
+=================== =========== =========== ===================================================
+``tag.starts_with`` ``@foo.*``  ``foo.*``   Search for tags that start with a ``prefix``.
+``tag.ends_with``   ``@*.one``  ``*.one``   Search for tags that end with a ``suffix``.
+``tag.contains``    ``@*foo*``  ``*foo*``   Search for tags that contain a ``part``.
+=================== =========== =========== ===================================================
+
+.. code-block:: gherkin
+    :caption: FILE: features/one.feature
+
+    Feature: Alice
+
+      @foo.one
+      Scenario: Alice.1
+        ...
+
+      @foo.two
+      Scenario: Alice.2
+        ...
+
+      @bar
+      Scenario: Alice.3
+        ...
+
+The following command-line will select all features / scenarios with tags
+that start with "@foo.":
+
+.. code-block:: sh
+    :caption: USAGE EXAMPLE: Run behave with tag-matching expressions
+
+    $ behave -f plain --tags="@foo.*" features/one.feature
+    Feature: Alice
+
+      Scenario: Alice.1
+        ...
+
+      Scenario: Alice.2
+        ...
+
+    # -- HINT: Only Alice.1 and Alice.2 are matched (not: Alice.3).
+
+.. note::
+
+    * Filename matching wildcards are supported.
+      See :mod:`fnmatch` (Unix style filename matching).
+
+    * The tag matching functionality is an extension to :pypi:`cucumber-tag-expressions`.
+
+
+Select the Tag-Expression Version to Use
+-------------------------------------------------------------------------------
+
+The tag-expression version, that should be used by :pypi:`behave`,
+can be specified in the :pypi:`behave` config-file.
+
+This allows a user to select:
+
+* Tag-Expressions v1 (if needed)
+* Tag-Expressions v2 when it is feasible
+
+EXAMPLE:
+
+.. code-block:: ini
+    :caption: FILE: behave.ini
+
+    # SPECIFY WHICH TAG-EXPRESSION-PROTOCOL SHOULD BE USED:
+    #   SUPPORTED VALUES: v1, v2, auto_detect
+    #   CURRENT DEFAULT:  auto_detect
+    [behave]
+    tag_expression_protocol = v1    # -- Use Tag-Expressions v1.
+
+
+Tag-Expressions v1
+-------------------------------------------------------------------------------
+
+Tag-Expressions v1 are becoming deprecated (but are currently still supported).
+Use **Tag-Expressions v2** instead.
+
+.. note::
+
+    Tag-Expressions v1 support will be dropped in ``behave v1.4.0``.
+
+}
+
+
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Tag expression with three tags (@foo, @bar, @zap)
+    Given the model elements with name and tags:
+        | name | tags                   | Comment |
+        | S0   |                        | Untagged    |
+        | S1   | @foo                   | With 1 tag  |
+        | S2   | @bar                   |             |
+        | S3   | @zap                   |             |
+        | S4   | @other                 |             |
+        | S5   | @foo @bar              | With 2 tags |
+        | S6   | @foo @zap              |             |
+        | S7   | @foo @other            |             |
+        | S8   | @bar @zap              |             |
+        | S9   | @bar @other            |             |
+        | S10  | @zap @other            |             |
+        | S11  | @foo @bar @zap         | With 3 tags |
+        | S12  | @foo @bar @other       |             |
+        | S13  | @foo @zap @other       |             |
+        | S14  | @bar @zap @other       |             |
+        | S15  | @foo @bar @zap @other  | With 4 tags |
+    And note that "are all combinations of 0..4 tags"
+    Then the tag expression selects model elements with:
+        | tag expression                | selected?                   | Case |
+        |  (@foo or @bar) and @zap      | S6, S8, S11, S13, S14, S15  | (@foo or @bar) and @zap |
+        |  (@foo or @bar) and not @zap  | S1, S2, S5, S7, S9, S12     | (@foo or @bar) and not @zap |
+        |  (@foo or not @bar) and @zap | S3, S6, S10, S11, S13, S15  | (@foo or not @bar) and @zap |
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 4 -------
+-----START OF RECORD 5 -------
+Input text: {
+Scenario:.. _docid.fixtures:
+
+Fixtures
+==============================================================================
+
+A common task during test execution is to:
+
+* setup a functionality when a test-scope is entered
+* cleanup (or teardown) the functionality at the end of the test-scope
+
+**Fixtures** are provided as concept to simplify this setup/cleanup task
+in `behave`_.
+
+.. include:: _common_extlinks.rst
+
+Providing a Fixture
+-------------------
+
+.. code-block:: python
+
+    # -- FILE: behave4my_project/fixtures.py  (or in: features/environment.py)
+    from behave import fixture
+    from somewhere.browser.firefox import FirefoxBrowser
+
+    # -- FIXTURE-VARIANT 1: Use generator-function
+    @fixture
+    def browser_firefox(context, timeout=30, **kwargs):
+        # -- SETUP-FIXTURE PART:
+        context.browser = FirefoxBrowser(timeout, **kwargs)
+        yield context.browser
+        # -- CLEANUP-FIXTURE PART:
+        context.browser.shutdown()
+
+.. code-block:: python
+
+    # -- FIXTURE-VARIANT 2: Use normal function
+    from somewhere.browser.chrome import ChromeBrowser
+
+    @fixture
+    def browser_chrome(context, timeout=30, **kwargs):
+        # -- SETUP-FIXTURE PART: And register as context-cleanup task.
+        browser = ChromeBrowser(timeout, **kwargs)
+        context.browser = browser
+        context.add_cleanup(browser.shutdown)
+        return browser
+        # -- CLEANUP-FIXTURE PART: browser.shutdown()
+        # Fixture-cleanup is called when current context-layer is removed.
+
+.. seealso::
+
+    A *fixture* is similar to:
+
+    * a :func:`contextlib.contextmanager`
+    * a `pytest.fixture`_
+    * the `scope guard`_ idiom
+
+Given:Using a Fixture
+---------------
+
+In many cases, the usage of a fixture is triggered by the ``fixture-tag``
+in a feature file. The ``fixture-tag`` marks that a fixture
+should be used in this scenario/feature (as test-scope).
+
+.. code-block:: gherkin
+
+    # -- FILE: features/use_fixture1.feature
+    Feature: Use Fixture on Scenario Level
+
+        @fixture.browser.firefox
+        Scenario: Use Web Browser Firefox
+            Given I load web page "https://somewhere.web"
+            ...
+        # -- AFTER-SCENARIO: Cleanup fixture.browser.firefox
+
+.. code-block:: gherkin
+
+    # -- FILE: features/use_fixture2.feature
+    @fixture.browser.firefox
+    Feature: Use Fixture on Feature Level
+
+        Scenario: Use Web Browser Firefox
+            Given I load web page "https://somewhere.web"
+            ...
+
+        Scenario: Another Browser Test
+            ...
+
+    # -- AFTER-FEATURE: Cleanup fixture.browser.firefox
+
+
+A **fixture** can be used by calling the :func:`~behave.use_fixture()` function.
+The :func:`~behave.use_fixture()` call performs the ``SETUP-FIXTURE`` part and returns the
+setup result. In addition, it ensures that ``CLEANUP-FIXTURE`` part is called
+later-on when the current context-layer is removed.
+Therefore, any manual cleanup handling in the ``after_tag()`` hook is not necessary.
+
+.. code-block:: python
+
+    # -- FILE: features/environment.py
+    from behave import use_fixture
+    from behave4my_project.fixtures import browser_firefox
+
+    def before_tag(context, tag):
+        if tag == "fixture.browser.firefox":
+            use_fixture(browser_firefox, context, timeout=10)
+
+
+
+Then:Realistic Example
+~~~~~~~~~~~~~~~~~
+
+A more realistic example by using a fixture registry is shown below:
+
+.. code-block:: python
+
+    # -- FILE: features/environment.py
+    from behave.fixture import use_fixture_by_tag, fixture_call_params
+    from behave4my_project.fixtures import browser_firefox, browser_chrome
+
+    # -- REGISTRY DATA SCHEMA 1: fixture_func
+    fixture_registry1 = {
+        "fixture.browser.firefox": browser_firefox,
+        "fixture.browser.chrome":  browser_chrome,
+    }
+    # -- REGISTRY DATA SCHEMA 2: (fixture_func, fixture_args, fixture_kwargs)
+    fixture_registry2 = {
+        "fixture.browser.firefox": fixture_call_params(browser_firefox),
+        "fixture.browser.chrome":  fixture_call_params(browser_chrome, timeout=12),
+    }
+
+    def before_tag(context, tag):
+        if tag.startswith("fixture."):
+            return use_fixture_by_tag(tag, context, fixture_registry1):
+        # -- MORE: Tag processing steps ...
+
+
+.. code-block:: python
+
+    # -- FILE: behave/fixture.py
+    # ...
+    def use_fixture_by_tag(tag, context, fixture_registry):
+        fixture_data = fixture_registry.get(tag, None)
+        if fixture_data is None:
+            raise LookupError("Unknown fixture-tag: %s" % tag)
+
+        # -- FOR DATA SCHEMA 1:
+        fixture_func = fixture_data
+        return use_fixture(fixture_func, context)
+
+        # -- FOR DATA SCHEMA 2:
+        fixture_func, fixture_args, fixture_kwargs = fixture_data
+        return use_fixture(fixture_func, context, *fixture_args, **fixture_kwargs)
+
+
+
+.. hint:: **Naming Convention for Fixture Tags**
+
+    Fixture tags should start with ``"@fixture.*"`` prefix to improve readability
+    and understandibilty in feature files (Gherkin).
+
+    Tags are used for different purposes. Therefore, it should be clear
+    when a ``fixture-tag`` is used.
+
+
+
+Fixture Cleanup Points
+------------------------------------------------------------------------------
+
+The point when a fixture-cleanup is performed depends on the scope where
+:func:`~behave.use_fixture()` is called (and the fixture-setup is performed).
+
+
+============= =========================== ==========================================================================================
+Context Layer Fixture-Setup Point         Fixture-Cleanup Point
+============= =========================== ==========================================================================================
+test run      In ``before_all()`` hook    After ``after_all()``       at end of test-run.
+feature       In ``before_feature()``     After ``after_feature()``,  at end of feature.
+feature       In ``before_tag()``         After ``after_feature()``   for feature tag.
+scenario      In ``before_scenario()``    After ``after_scenario()``, at end of scenario.
+scenario      In ``before_tag()``         After ``after_scenario()``  for scenario tag.
+scenario      In a step                   After ``after_scenario()``. Fixture is usable until end of scenario.
+============= =========================== ==========================================================================================
+
+
+Fixture Setup/Cleanup Semantics
+------------------------------------------------------------------------------
+
+If an error occurs during fixture-setup (meaning an exception is raised):
+
+* Feature/scenario execution is aborted
+* Any remaining fixture-setups are skipped
+* After feature/scenario hooks are processed
+* All fixture-cleanups and context cleanups are performed
+* The feature/scenario is marked as failed
+
+If an error occurs during fixture-cleanup (meaning an exception is raised):
+
+* All remaining fixture-cleanups and context cleanups are performed
+* First cleanup-error is reraised to pass failure to user (test runner)
+* The feature/scenario is marked as failed
+
+
+
+Ensure Fixture Cleanups with Fixture Setup Errors
+------------------------------------------------------------------------------
+
+Fixture-setup errors are special because a cleanup of a fixture is in many
+cases not necessary (or rather difficult because the fixture object
+is only partly created, etc.). Therefore, if an error occurs during fixture-setup
+(meaning: an exception is raised), the fixture-cleanup part is normally not called.
+
+If you need to ensure that the fixture-cleanup is performed, you need to
+provide a slightly different fixture implementation:
+
+.. code-block:: python
+
+    # -- FILE: behave4my_project/fixtures.py  (or: features/environment.py)
+    from behave import fixture
+    from somewhere.browser.firefox import FirefoxBrowser
+
+    def setup_fixture_part2_with_error(arg):
+        raise RuntimeError("OOPS-FIXTURE-SETUP-ERROR-HERE)
+
+    # -- FIXTURE-VARIANT 1: Use generator-function with try/finally.
+    @fixture
+    def browser_firefox(context, timeout=30, **kwargs):
+        try:
+            browser = FirefoxBrowser(timeout, **kwargs)
+            browser.part2 = setup_fixture_part2_with_error("OOPS")
+            context.browser = browser   # NOT_REACHED
+            yield browser
+            # -- NORMAL FIXTURE-CLEANUP PART: NOT_REACHED due to setup-error.
+         finally:
+            browser.shutdown()  # -- CLEANUP: When generator-function is left.
+
+.. code-block:: python
+
+    # -- FIXTURE-VARIANT 2: Use normal function and register cleanup-task early.
+    from somewhere.browser.chrome import ChromeBrowser
+
+    @fixture
+    def browser_chrome(context, timeout=30, **kwargs):
+        browser = ChromeBrowser(timeout, **kwargs)
+        context.browser = browser
+        context.add_cleanup(browser.shutdown)   # -- ENSURE-CLEANUP EARLY
+        browser.part2 = setup_fixture_part2_with_error("OOPS")
+        return browser  # NOT_REACHED
+        # -- CLEANUP: browser.shutdown() when context-layer is removed.
+
+.. note::
+
+    An fixture-setup-error that occurs when the browser object is created,
+    is not covered by these solutions and not so easy to solve.
+
+
+
+Composite Fixtures
+------------------------------------------------------------------------------
+
+The last section already describes some problems when you use
+complex or *composite fixtures*. It must be ensured that cleanup of already
+created fixture parts is performed even when errors occur late in the creation
+of a *composite fixture*. This is basically a `scope guard`_ problem.
+
+Solution 1:
+~~~~~~~~~~~
+
+.. code-block:: python
+
+    # -- FILE: behave4my_project/fixtures.py
+    # SOLUTION 1: Use "use_fixture()" to ensure cleanup even in case of errors.
+    from behave import fixture, use_fixture
+
+    @fixture
+    def foo(context, *args, **kwargs):
+        pass    # -- FIXTURE IMPLEMENTATION: Not of interest here.
+
+    @fixture
+    def bar(context, *args, **kwargs):
+        pass    # -- FIXTURE IMPLEMENTATION: Not of interest here.
+
+    # -- SOLUTION: With use_fixture()
+    # ENSURES: foo-fixture is cleaned up even when setup-error occurs later.
+    @fixture
+    def composite1(context, *args, **kwargs):
+        the_fixture1 = use_fixture(foo, context)
+        the_fixture2 = use_fixture(bar, context)
+        return [the_fixture1, the_fixture2]
+
+
+Solution 2:
+~~~~~~~~~~~
+
+.. code-block:: python
+
+    # -- ALTERNATIVE SOLUTION: With use_composite_fixture_with()
+    from behave import fixture
+    from behave.fixture import use_composite_fixture_with, fixture_call_params
+
+    @fixture
+    def composite2(context, *args, **kwargs):
+        the_composite = use_composite_fixture_with(context, [
+            fixture_call_params(foo, name="foo"),
+            fixture_call_params(bar, name="bar"),
+        ])
+        return the_composite
+
+}
+
+
+
+
+
+
+Generated Output: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Expected Output: Scenario: Feature Setup
+    Given a new working directory
+    And a file named "features/steps/steps.py" with:
+      """
+      from behave import step
+
+      @step(u'the browser is "{browser_name}"')
+      def step_browser_is(context, browser_name):
+          assert context.browser == browser_name
+
+      @step(u'no browser info exists')
+      def step_no_browser_info(context):
+          assert not hasattr(context, "browser")
+
+      @step(u'{word:w} step passes')
+      def step_passes(context, word):
+          pass
+      """
+    And a file named "behave.ini" with:
+      """
+      [behave]
+      show_timings = false
+      """
+    And an empty file named "features/environment.py"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 5 -------
