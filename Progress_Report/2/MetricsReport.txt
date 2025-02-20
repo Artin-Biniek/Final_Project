@@ -1,0 +1,5004 @@
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+Token indices sequence length is longer than the specified maximum sequence length for this model (1346 > 512). Running this sequence through the model will result in indexing errors
+Streaming output truncated to the last 5000 lines.
+logging_clear_handlers = true
+logging_filter = "-suds"
+NOTE: toml does not support ‘%’ interpolations.
+
+
+Given:Configuration Parameter Types
+The following types are supported (and used):
+
+text
+This just assigns whatever text you supply to the configuration setting.
+
+bool
+This assigns a boolean value to the configuration setting. The text describes the functionality when the value is true. True values are “1”, “yes”, “true”, and “on”. False values are “0”, “no”, “false”, and “off”. TOML: toml only accepts its native true
+
+sequence<text>
+These fields accept one or more values on new lines, for example a tag expression might look like:
+
+default_tags= (@foo or not @bar) and @zap
+which is the equivalent of the command-line usage:
+
+--tags="(@foo or not @bar) and @zap"
+TOML: toml can use arrays natively.
+
+Configuration Parameters
+color : Colored (Enum)
+Use colored mode or not (default: auto).
+
+dry_run : bool
+Invokes formatters without executing the steps.
+
+userdata_defines : sequence<text>
+Define user-specific data for the config.userdata dictionary. Example: -D foo=bar to store it in config.userdata[“foo”].
+
+exclude_re : text
+Don’t run feature files matching regular expression PATTERN.
+
+include_re : text
+Only run feature files matching regular expression PATTERN.
+
+junit : bool
+Output JUnit-compatible reports. When junit is enabled, all stdout and stderr will be redirected and dumped to the junit report, regardless of the “–capture” and “–no-capture” options.
+
+junit_directory : text
+Directory in which to store JUnit reports.
+
+jobs : positive_number
+Number of concurrent jobs to use (default: 1). Only supported by test runners that support parallel execution.
+
+default_format : text
+Specify default formatter (default: pretty).
+
+format : sequence<text>
+Specify a formatter. If none is specified the default formatter is used. Pass “–format help” to get a list of available formatters.
+
+steps_catalog : bool
+Show a catalog of all available step definitions. SAME AS: –format=steps.catalog –dry-run –no-summary -q
+
+scenario_outline_annotation_schema : text
+Specify name annotation schema for scenario outline (default=”{name} – @{row.id} {examples.name}”).
+
+show_skipped : bool
+Print skipped steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+show_snippets : bool
+Print snippets for unimplemented steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+show_multiline : bool
+Print multiline strings and tables under steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+name : sequence<text>
+Select feature elements (scenarios, …) to run which match part of the given name (regex pattern). If this option is given more than once, it will match against all the given names.
+
+stdout_capture : bool
+Capture stdout (any stdout output will be printed if there is a failure.) This is the default behaviour. This switch is used to override a configuration file setting.
+
+stderr_capture : bool
+Capture stderr (any stderr output will be printed if there is a failure.) This is the default behaviour. This switch is used to override a configuration file setting.
+
+log_capture : bool
+Capture logging. All logging during a step will be captured and displayed in the event of a failure. This is the default behaviour. This switch is used to override a configuration file setting.
+
+logging_level : text
+Specify a level to capture logging at. The default is INFO - capturing everything.
+
+logging_format : text
+Specify custom format to print statements. Uses the same format as used by standard logging handlers. The default is “%(levelname)s:%(name)s:%(message)s”.
+
+logging_datefmt : text
+Specify custom date/time format to print statements. Uses the same format as used by standard logging handlers.
+
+logging_filter : text
+Specify which statements to filter in/out. By default, everything is captured. If the output is too verbose, use this option to filter out needless output. Example: logging_filter = foo will capture statements issued ONLY to “foo” or “foo.what.ever.sub” but not “foobar” or other logger. Specify multiple loggers with comma: logging_filter = foo,bar,baz. If any logger name is prefixed with a minus, eg logging_filter = -foo, it will be excluded rather than included.
+
+logging_clear_handlers : bool
+Clear all other logging handlers.
+
+summary : bool
+Display the summary at the end of the run.
+
+outfiles : sequence<text>
+Write to specified file instead of stdout.
+
+paths : sequence<text>
+Specify default feature paths, used when none are provided.
+
+tag_expression_protocol : TagExpressionProtocol (Enum)
+Specify the tag-expression protocol to use (default: auto_detect). With “v1”, only tag-expressions v1 are supported. With “v2”, only tag-expressions v2 are supported. With “auto_detect”, tag- expressions v1 and v2 are auto-detected.
+
+quiet : bool
+Alias for –no-snippets –no-source.
+
+runner : text
+Use own runner class, like: “behave.runner:Runner”
+
+show_source : bool
+Print the file and line of the step definition with the steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+stage : text
+Defines the current test stage. The test stage name is used as name prefix for the environment file and the steps directory (instead of default path names).
+
+stop : bool
+Stop running tests at the first failure.
+
+default_tags : sequence<text>
+Define default tags when non are provided. See –tags for more information.
+
+tags : sequence<text>
+Only execute certain features or scenarios based on the tag expression given. See below for how to code tag expressions in configuration files.
+
+show_timings : bool
+Print the time taken, in seconds, of each step after the step has completed. This is the default behaviour. This switch is used to override a configuration file setting.
+
+verbose : bool
+Show the files and features loaded.
+
+wip : bool
+Only run scenarios tagged with “wip”. Additionally: use the “plain” formatter, do not capture stdout or logging output and stop at the first failure.
+
+lang : text
+Use keywords for a language other than English.
+
+Then:Refer to description under command-line arguments
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: Scenario: Command-line args can override default paths in configfile
+        When I run "behave -f plain features/alice.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            3 steps passed, 0 failed, 0 skipped, 0 undefined
+             """
+        And the command output should contain:
+            """
+            Feature: Alice
+                Scenario: A1
+            """
+        But the command output should not contain:
+            """
+            Feature: Bob
+            """
+        And the command output should not contain:
+            """
+            Feature: Charly
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 47 -------
+-----START OF RECORD 48 -------
+Input text: {
+
+Scenario:Link:https://behave.readthedocs.io/en/latest/behave/#configuration-files
+Configuration Files
+Configuration files for behave are called either “.behaverc”, “behave.ini”, “setup.cfg”, “tox.ini”, or “pyproject.toml” (your preference) and are located in one of three places:
+
+the current working directory (good for per-project settings),
+
+your home directory ($HOME), or
+
+on Windows, in the %APPDATA% directory.
+
+If you are wondering where behave is getting its configuration defaults from you can use the “-v” command-line argument and it’ll tell you.
+
+Configuration files must start with the label “[behave]” and are formatted in the Windows INI style, for example:
+
+[behave]
+format=plain
+logging_clear_handlers=yes
+logging_filter=-suds
+Alternatively, if using “pyproject.toml” instead (note the “tool.” prefix):
+
+[tool.behave]
+format = "plain"
+logging_clear_handlers = true
+logging_filter = "-suds"
+NOTE: toml does not support ‘%’ interpolations.
+
+
+Given:Configuration Parameter Types
+The following types are supported (and used):
+
+text
+This just assigns whatever text you supply to the configuration setting.
+
+bool
+This assigns a boolean value to the configuration setting. The text describes the functionality when the value is true. True values are “1”, “yes”, “true”, and “on”. False values are “0”, “no”, “false”, and “off”. TOML: toml only accepts its native true
+
+sequence<text>
+These fields accept one or more values on new lines, for example a tag expression might look like:
+
+default_tags= (@foo or not @bar) and @zap
+which is the equivalent of the command-line usage:
+
+--tags="(@foo or not @bar) and @zap"
+TOML: toml can use arrays natively.
+
+Configuration Parameters
+color : Colored (Enum)
+Use colored mode or not (default: auto).
+
+dry_run : bool
+Invokes formatters without executing the steps.
+
+userdata_defines : sequence<text>
+Define user-specific data for the config.userdata dictionary. Example: -D foo=bar to store it in config.userdata[“foo”].
+
+exclude_re : text
+Don’t run feature files matching regular expression PATTERN.
+
+include_re : text
+Only run feature files matching regular expression PATTERN.
+
+junit : bool
+Output JUnit-compatible reports. When junit is enabled, all stdout and stderr will be redirected and dumped to the junit report, regardless of the “–capture” and “–no-capture” options.
+
+junit_directory : text
+Directory in which to store JUnit reports.
+
+jobs : positive_number
+Number of concurrent jobs to use (default: 1). Only supported by test runners that support parallel execution.
+
+default_format : text
+Specify default formatter (default: pretty).
+
+format : sequence<text>
+Specify a formatter. If none is specified the default formatter is used. Pass “–format help” to get a list of available formatters.
+
+steps_catalog : bool
+Show a catalog of all available step definitions. SAME AS: –format=steps.catalog –dry-run –no-summary -q
+
+scenario_outline_annotation_schema : text
+Specify name annotation schema for scenario outline (default=”{name} – @{row.id} {examples.name}”).
+
+show_skipped : bool
+Print skipped steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+show_snippets : bool
+Print snippets for unimplemented steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+show_multiline : bool
+Print multiline strings and tables under steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+name : sequence<text>
+Select feature elements (scenarios, …) to run which match part of the given name (regex pattern). If this option is given more than once, it will match against all the given names.
+
+stdout_capture : bool
+Capture stdout (any stdout output will be printed if there is a failure.) This is the default behaviour. This switch is used to override a configuration file setting.
+
+stderr_capture : bool
+Capture stderr (any stderr output will be printed if there is a failure.) This is the default behaviour. This switch is used to override a configuration file setting.
+
+log_capture : bool
+Capture logging. All logging during a step will be captured and displayed in the event of a failure. This is the default behaviour. This switch is used to override a configuration file setting.
+
+logging_level : text
+Specify a level to capture logging at. The default is INFO - capturing everything.
+
+logging_format : text
+Specify custom format to print statements. Uses the same format as used by standard logging handlers. The default is “%(levelname)s:%(name)s:%(message)s”.
+
+logging_datefmt : text
+Specify custom date/time format to print statements. Uses the same format as used by standard logging handlers.
+
+logging_filter : text
+Specify which statements to filter in/out. By default, everything is captured. If the output is too verbose, use this option to filter out needless output. Example: logging_filter = foo will capture statements issued ONLY to “foo” or “foo.what.ever.sub” but not “foobar” or other logger. Specify multiple loggers with comma: logging_filter = foo,bar,baz. If any logger name is prefixed with a minus, eg logging_filter = -foo, it will be excluded rather than included.
+
+logging_clear_handlers : bool
+Clear all other logging handlers.
+
+summary : bool
+Display the summary at the end of the run.
+
+outfiles : sequence<text>
+Write to specified file instead of stdout.
+
+paths : sequence<text>
+Specify default feature paths, used when none are provided.
+
+tag_expression_protocol : TagExpressionProtocol (Enum)
+Specify the tag-expression protocol to use (default: auto_detect). With “v1”, only tag-expressions v1 are supported. With “v2”, only tag-expressions v2 are supported. With “auto_detect”, tag- expressions v1 and v2 are auto-detected.
+
+quiet : bool
+Alias for –no-snippets –no-source.
+
+runner : text
+Use own runner class, like: “behave.runner:Runner”
+
+show_source : bool
+Print the file and line of the step definition with the steps. This is the default behaviour. This switch is used to override a configuration file setting.
+
+stage : text
+Defines the current test stage. The test stage name is used as name prefix for the environment file and the steps directory (instead of default path names).
+
+stop : bool
+Stop running tests at the first failure.
+
+default_tags : sequence<text>
+Define default tags when non are provided. See –tags for more information.
+
+tags : sequence<text>
+Only execute certain features or scenarios based on the tag expression given. See below for how to code tag expressions in configuration files.
+
+show_timings : bool
+Print the time taken, in seconds, of each step after the step has completed. This is the default behaviour. This switch is used to override a configuration file setting.
+
+verbose : bool
+Show the files and features loaded.
+
+wip : bool
+Only run scenarios tagged with “wip”. Additionally: use the “plain” formatter, do not capture stdout or logging output and stop at the first failure.
+
+lang : text
+Use keywords for a language other than English.
+
+Then:Refer to description under command-line arguments
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: Scenario: Command-line args are provided (CASE 2)
+        When I run "behave -f plain features"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            2 scenarios passed, 0 failed, 0 skipped
+             """
+        And the command output should contain:
+            """
+            Feature: Alice
+                Scenario: A1
+                    Given a step passes ... passed
+                    When a step passes ... passed
+                    Then a step passes ... passed
+
+            Feature: Bob
+                Scenario: B1
+                    When a step passes ... passed
+            """
+        But the command output should not contain:
+            """
+            Feature: Charly
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 48 -------
+-----START OF RECORD 49 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Setup directory structure
+        Given a new working directory
+        And a file named "features/steps/steps.py" with:
+            """
+            from behave import step
+
+            @step('{word:w} step passes')
+            def step_passes(context, word):
+                pass
+
+            @step('{word:w} step fails')
+            def step_fails(context, word):
+                assert False, "XFAIL-STEP"
+            """
+        And a file named "features/steps/environment_steps.py" with:
+            """
+            from behave import step
+
+            @step('environment setup was done')
+            def step_ensure_environment_setup(context):
+                assert context.setup_magic == 42
+            """
+        And a file named "features/environment.py" with:
+            """
+            def before_all(context):
+                context.setup_magic = 42
+            """
+        And a file named "features/group1/alice.feature" with:
+            """
+            Feature: Alice
+                Scenario: A1
+                  Given a step passes
+                  When another step passes
+                  Then a step passes
+
+                Scenario: A2
+                  Then environment setup was done
+            """
+        And a file named "features/group1/bob.feature" with:
+            """
+            Feature: Bob
+                Scenario: B1
+                  When a step passes
+                  Then another step passes
+            """
+        And a file named "features/group2/charly.feature" with:
+            """
+            Feature: Charly
+                Scenario: C1
+                  Given another step passes
+                  Then a step passes
+            """
+
+
+
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 49 -------
+-----START OF RECORD 50 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with feature directory
+        When I run "behave -f progress features/"
+        Then it should pass with:
+            """
+            3 features passed, 0 failed, 0 skipped
+            4 scenarios passed, 0 failed, 0 skipped
+            8 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 50 -------
+-----START OF RECORD 51 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with feature subdirectory (CASE 1)
+        When I run "behave -f progress features/group1/"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            3 scenarios passed, 0 failed, 0 skipped
+            6 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 51 -------
+-----START OF RECORD 52 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with feature subdirectory (CASE 2)
+        When I run "behave -f progress features/group2/"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            2 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 52 -------
+-----START OF RECORD 53 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output:  Scenario: Run behave with one feature file
+        When I run "behave -f progress features/group1/alice.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            2 scenarios passed, 0 failed, 0 skipped
+            4 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+        When I run "behave -f progress features/group2/charly.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            2 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 53 -------
+-----START OF RECORD 54 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output:  Scenario: Run behave with two feature files (CASE 1)
+        Given a file named "one.featureset" with:
+            """
+            features/group1/alice.feature
+            features/group2/charly.feature
+            """
+        When I run "behave -f progress @one.featureset"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            3 scenarios passed, 0 failed, 0 skipped
+            6 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 54 -------
+-----START OF RECORD 55 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. 
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+Then:a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+ This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output:  Scenario: Run behave with two feature files (CASE 2: different ordering)
+        Given a file named "two.featureset" with:
+            """
+            features/group2/charly.feature
+            features/group1/alice.feature
+            """
+        When I run "behave -f progress @two.featureset"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            3 scenarios passed, 0 failed, 0 skipped
+            6 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 55 -------
+-----START OF RECORD 56 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. When launched you may pass on the command line:
+
+
+Given:nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then: This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Setup directory structure
+        Given a new working directory
+        And a file named "features/steps/steps.py" with:
+            """
+            from behave import step
+
+            @step('{word:w} step passes')
+            def step_passes(context, word):
+                pass
+
+            @step('{word:w} step fails')
+            def step_fails(context, word):
+                assert False, "XFAIL-STEP"
+            """
+        And a file named "features/alice.feature" with:
+            """
+            Feature: Alice
+                Scenario: A1
+                  Given a step passes
+                  When another step passes
+                  Then a step passes
+            """
+        And a file named "features/bob.feature" with:
+            """
+            Feature: Bob
+                Scenario: B1
+                  When a step passes
+                  Then another step passes
+            """
+
+
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 56 -------
+-----START OF RECORD 57 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. When launched you may pass on the command line:
+
+
+Given:nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then: This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output:  Scenario: Run behave with feature directory
+        When I run "behave -f progress features/"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            2 scenarios passed, 0 failed, 0 skipped
+            5 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 57 -------
+-----START OF RECORD 58 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. When launched you may pass on the command line:
+
+
+Given:nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then: This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output:   Scenario: Run behave with one feature file
+        When I run "behave -f progress features/alice.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            3 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 58 -------
+-----START OF RECORD 59 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications. When launched you may pass on the command line:
+
+
+Given:nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then: This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+}
+
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output:   Scenario: Run behave with two feature files
+        When I run "behave -f progress features/alice.feature features/bob.feature"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            2 scenarios passed, 0 failed, 0 skipped
+            5 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 59 -------
+-----START OF RECORD 60 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications.
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then:This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+
+}
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Setup directory structure
+        Given a new working directory
+        And a file named "testing/features/steps/steps.py" with:
+            """
+            from behave import step
+
+            @step('{word:w} step passes')
+            def step_passes(context, word):
+                pass
+
+            @step('{word:w} step fails')
+            def step_fails(context, word):
+                assert False, "XFAIL-STEP"
+            """
+        And a file named "testing/features/alice.feature" with:
+            """
+            Feature: Alice
+                Scenario: A1
+                  Given a step passes
+                  When another step passes
+                  Then a step passes
+            """
+        And a file named "testing/features/bob.feature" with:
+            """
+            Feature: Bob
+                Scenario: B1
+                  When a step passes
+                  Then another step passes
+            """
+
+
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 60 -------
+-----START OF RECORD 61 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications.
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then:This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+
+}
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with testing directory
+        When I run "behave -f progress testing/"
+        Then it should fail with:
+            """
+            ConfigError: No steps directory in '{__WORKDIR__}/testing'
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 61 -------
+-----START OF RECORD 62 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications.
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then:This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+
+}
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with feature subdirectory
+        When I run "behave -f progress testing/features/"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            2 scenarios passed, 0 failed, 0 skipped
+            5 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 62 -------
+-----START OF RECORD 63 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications.
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then:This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+
+}
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with one feature file
+        When I run "behave -f progress testing/features/alice.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            3 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 63 -------
+-----START OF RECORD 64 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#layout-variations
+Layout Variations
+behave has some flexibility built in. It will actually try quite hard to find feature specifications.
+
+
+Given:When launched you may pass on the command line:
+
+nothing
+In the absence of any information behave will attempt to load your features from a subdirectory called “features” in the directory you launched behave.
+
+a features directory path
+This is the path to a features directory laid out as described above. It may be called anything but must contain at least one “name.feature” file and a directory called “steps”. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+the path to a “*name*.feature” file
+This tells behave where to find the feature file. To find the steps directory behave will look in the directory containing the feature file. If it is not present, behave will look in the parent directory, and then its parent, and so on until it hits the root of the filesystem. The “environment.py” file, if present, must be in the same directory that contains the “steps” directory (not in the “steps” directory).
+
+a directory containing your feature files
+Similar to the approach above, you’re identifying the directory where your “name.feature” files are, and if the “steps” directory is not in the same place then behave will search for it just like above.
+
+
+Then:This allows you to have a layout like:
+
++--tests/
+|    +-- steps/
+|    |    +-- use_steplib_xyz.py
+|    |    +-- website_steps.py
+|    |    +-- utils.py
+|    +-- environment.py
+|    +-- signup.feature
+|    +-- login.feature
+|    +-- account_details.feature
+Note that with this approach, if you want to execute behave without having to explicitly specify the directory (first option) you can set the paths setting in your configuration file (e.g. paths=tests).
+
+If you’re having trouble setting things up and want to see what behave is doing in attempting to find your features use the “-v” (verbose) command-line switch.
+
+
+}
+
+Generated Output: ﻿using System;
+using System.Collections.Generic;
+using System.
+Expected Output: Scenario: Run behave with two feature files
+        Given a file named "one.featureset" with:
+            """
+            testing/features/alice.feature
+            testing/features/bob.feature
+            """
+        When I run "behave -f progress @one.featureset"
+        Then it should pass with:
+            """
+            2 features passed, 0 failed, 0 skipped
+            2 scenarios passed, 0 failed, 0 skipped
+            5 steps passed, 0 failed, 0 skipped, 0 undefined
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 64 -------
+-----START OF RECORD 65 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: Scenario: Feature Setup
+    Given a new working directory
+    And a file named "features/steps/background_steps.py" with:
+        """
+        from behave import step
+
+        @step('{word} background step passes')
+        def step_background_step_passes(context, word):
+            pass
+
+        @step('{word} background step fails')
+        def step_background_step_fails(context, word):
+            assert False, "XFAIL: background step"
+
+        @step('{word} background step fails sometimes')
+        def step_background_step_fails_sometimes(context, word):
+            should_fail = (context.scenarios_count % 2) == 0
+            if should_fail:
+                step_background_step_fails(context, word)
+        """
+    And a file named "features/steps/passing_steps.py" with:
+        """
+        from behave import step
+
+        @step('{word} step passes')
+        def step_passes(context, word):
+            pass
+
+        @step('{word} step fails')
+        def step_fails(context, word):
+            assert False, "XFAIL"
+        """
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 65 -------
+-----START OF RECORD 66 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Feature with a Background and Scenarios
+    Given a file named "features/background_example1.feature" with:
+        """
+        Feature:
+          Background:
+            Given a background step passes
+            And another background step passes
+
+          Scenario: S1
+            When a step passes
+
+          Scenario: S2
+            Then a step passes
+            And another step passes
+        """
+    When I run "behave -f plain -T features/background_example1.feature"
+    Then it should pass with:
+        """
+        2 scenarios passed, 0 failed, 0 skipped
+        7 steps passed, 0 failed, 0 skipped, 0 undefined
+        """
+    And the command output should contain:
+        """
+        Feature:
+          Background:
+
+          Scenario: S1
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            When a step passes ... passed
+
+          Scenario: S2
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            Then a step passes ... passed
+            And another step passes ... passed
+        """
+    But note that "the Background steps are injected into each Scenario"
+    And note that "the Background steps are executed before any Scenario steps"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 66 -------
+-----START OF RECORD 67 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Failing Background Step causes all Scenarios to fail
+    Given a file named "features/background_fail_example.feature" with:
+        """
+        Feature:
+
+          Background: B1
+            Given a background step passes
+            And a background step fails
+            And another background step passes
+
+          Scenario: S1
+            When a step passes
+
+          Scenario: S2
+            Then a step passes
+            And another step passes
+        """
+    When I run "behave -f plain -T features/background_fail_example.feature"
+    Then it should fail with:
+        """
+        0 scenarios passed, 2 failed, 0 skipped
+        2 steps passed, 2 failed, 5 skipped, 0 undefined
+        """
+    And the command output should contain:
+        """
+        Feature:
+          Background: B1
+
+          Scenario: S1
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+
+          Scenario: S2
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+        """
+    And note that "the failing Background step causes all Scenarios to fail"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 67 -------
+-----START OF RECORD 68 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:   Scenario: Failing Background Step does not prevent that other Scenarios are executed
+
+    If a Background step fails sometimes
+    it should be retried in the remaining Scenarios where it might pass.
+
+    Given a file named "features/background_fails_sometimes_example.feature" with:
+        """
+        Feature:
+
+          Background: B2
+            Given a background step fails sometimes
+
+          Scenario: S1
+            Given a step passes
+
+          Scenario: S2
+            When another step passes
+
+          Scenario: S3
+            Then another step passes
+        """
+    And a file named "features/environment.py" with:
+        """
+        scenarios_count = 0
+
+        def before_scenario(context, scenario):
+            global scenarios_count
+            context.scenarios_count = scenarios_count
+            scenarios_count += 1
+        """
+    When I run "behave -f plain -T features/background_fails_sometimes_example.feature"
+    Then it should fail with:
+        """
+        1 scenario passed, 2 failed, 0 skipped
+        2 steps passed, 2 failed, 2 skipped, 0 undefined
+        """
+    And the command output should contain:
+        """
+        Feature:
+            Background: B2
+
+            Scenario: S1
+              Given a background step fails sometimes ... failed
+          Assertion Failed: XFAIL: background step
+
+            Scenario: S2
+              Given a background step fails sometimes ... passed
+              When another step passes ... passed
+
+            Scenario: S3
+              Given a background step fails sometimes ... failed
+          Assertion Failed: XFAIL: background step
+        """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 68 -------
+-----START OF RECORD 69 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Feature with a Background and ScenarioOutlines
+    Given a file named "features/background_outline_example.feature" with:
+        """
+        Feature:
+          Background:
+            Given a background step passes
+            And another background step passes
+
+          Scenario Outline: SO1
+            When a step <outcome1>
+            Then another step <outcome2>
+
+            Examples: Alpha
+              | outcome1 | outcome2 |
+              | passes   | passes   |
+              | passes   | passes   |
+
+          Scenario Outline: SO2
+            Given <word1> step passes
+            Then <word2> step passes
+
+            Examples:
+              | word1   | word2   |
+              | a       | a       |
+              | a       | another |
+              | another | a       |
+        """
+    When I run "behave -f plain -T features/background_outline_example.feature"
+    Then it should pass with:
+        """
+        5 scenarios passed, 0 failed, 0 skipped
+        20 steps passed, 0 failed, 0 skipped, 0 undefined
+        """
+    And the command output should contain:
+        """
+        Feature:
+          Background:
+
+          Scenario Outline: SO1 -- @1.1 Alpha
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            When a step passes ... passed
+            Then another step passes ... passed
+
+          Scenario Outline: SO1 -- @1.2 Alpha
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            When a step passes ... passed
+            Then another step passes ... passed
+
+          Scenario Outline: SO2 -- @1.1
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            Given a step passes ... passed
+            Then a step passes ... passed
+
+          Scenario Outline: SO2 -- @1.2
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            Given a step passes ... passed
+            Then another step passes ... passed
+
+          Scenario Outline: SO2 -- @1.3
+            Given a background step passes ... passed
+            And another background step passes ... passed
+            Given another step passes ... passed
+            Then a step passes ... passed
+        """
+    But note that "the Background steps are injected into each ScenarioOutline"
+    And note that "the Background steps are executed before any ScenarioOutline steps"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 69 -------
+-----START OF RECORD 70 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Failing Background Step causes all ScenarioOutlines to fail
+    Given a file named "features/background_fail_outline_example.feature" with:
+        """
+        Feature:
+          Background:
+            Given a background step passes
+            And a background step fails
+            But another background step passes
+
+          Scenario Outline: SO1
+            When a step <outcome1>
+            Then another step <outcome2>
+
+            Examples: Alpha
+              | outcome1 | outcome2 |
+              | passes   | passes   |
+              | passes   | fails    |
+              | fails    | passes   |
+              | fails    | fails    |
+
+          Scenario Outline: SO2
+              When <word1> step passes
+
+            Examples: Beta
+              | word1   |
+              | a       |
+              | another |
+        """
+    When I run "behave -f plain -T features/background_fail_outline_example.feature"
+    Then it should fail with:
+        """
+        0 scenarios passed, 6 failed, 0 skipped
+        6 steps passed, 6 failed, 16 skipped, 0 undefined
+        """
+    And the command output should contain:
+        """
+        Feature:
+          Background:
+
+          Scenario Outline: SO1 -- @1.1 Alpha
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+
+          Scenario Outline: SO1 -- @1.2 Alpha
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+
+          Scenario Outline: SO1 -- @1.3 Alpha
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+
+          Scenario Outline: SO1 -- @1.4 Alpha
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+
+          Scenario Outline: SO2 -- @1.1 Beta
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+
+          Scenario Outline: SO2 -- @1.2 Beta
+            Given a background step passes ... passed
+            And a background step fails ... failed
+        Assertion Failed: XFAIL: background step
+        """
+    But note that "the failing Background step causes each ScenarioOutline to be marked as skipped"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 70 -------
+-----START OF RECORD 71 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Feature with Background after first Scenario should fail (SAD CASE)
+    Given a file named "features/background_sad_example1.feature" with:
+        """
+        Feature:
+          Scenario: S1
+            When a step passes
+
+          Background: B1
+            Given a background step passes
+
+          Scenario: S2
+            Then a step passes
+            And another step passes
+        """
+    When I run "behave -f plain -T features/background_sad_example1.feature"
+    Then it should fail with:
+        """
+        Parser failure in state=steps at line 5: "Background: B1"
+        REASON: Background may not occur after Scenario/ScenarioOutline.
+        """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 71 -------
+-----START OF RECORD 72 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/gherkin/#background
+Background
+A background consists of a series of steps similar to scenarios. It allows you to add some context to the scenarios of a feature. A background is executed before each scenario of this feature but after any of the before hooks.
+
+
+Given:It is useful for performing setup operations like:
+
+logging into a web browser or
+
+setting up a database with test data used by the scenarios.
+
+The background description is for the benefit of humans reading the feature text. Again the background name should just be a reasonably descriptive title for the background operation being performed or requirement being met.
+
+A background section may exist only once within a feature file. In addition, a background must be defined before any scenario or scenario outline.
+
+
+Then:It contains steps as described below.
+
+Good practices for using Background
+
+Don’t use “Background” to set up complicated state unless that state is actually something the client needs to know.
+For example, if the user and site names don’t matter to the client, you should use a high-level step such as “Given that I am logged in as a site owner”.
+
+Keep your “Background” section short.
+You’re expecting the user to actually remember this stuff when reading your scenarios. If the background is more than 4 lines long, can you move some of the irrelevant details into high-level steps? See calling steps from other steps.
+
+Make your “Background” section vivid.
+You should use colorful names and try to tell a story, because the human brain can keep track of stories much better than it can keep track of names like “User A”, “User B”, “Site 1”, and so on.
+
+Keep your scenarios short, and don’t have too many.
+If the background section has scrolled off the screen, you should think about using higher-level steps, or splitting the features file in two.
+
+}
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: Scenario: Feature with two Backgrounds should fail (SAD CASE)
+    Given a file named "features/background_sad_example2.feature" with:
+        """
+        Feature:
+          Background: B1
+            Given a background step passes
+
+          Background: B2 (XFAIL)
+            Given another background step passes
+
+          Scenario: S1
+            When a step passes
+
+          Scenario: S2
+            Then a step passes
+            And another step passes
+        """
+    When I run "behave -f plain -T features/background_sad_example2.feature"
+    Then it should fail with:
+        """
+        Parser failure in state=steps at line 5: "Background: B2 (XFAIL)"
+        REASON: Background should not be used here.
+        """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 72 -------
+-----START OF RECORD 73 -------
+Input text: Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of the command line functions
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Good case (with builtin formatters)
+      Given an empty file named "behave.ini"
+      When I run "behave --format=help"
+      Then it should pass
+      And the command output should contain:
+        """
+        AVAILABLE FORMATTERS:
+          json           JSON dump of test run
+          json.pretty    JSON dump of test run (human readable)
+          null           Provides formatter that does not output anything.
+          plain          Very basic formatter with maximum compatibility
+          pretty         Standard colourised pretty formatter
+          progress       Shows dotted progress for each executed scenario.
+          progress2      Shows dotted progress for each executed step.
+          progress3      Shows detailed progress for each step of a scenario.
+          rerun          Emits scenario file locations of failing scenarios
+          sphinx.steps   Generate sphinx-based documentation for step definitions.
+          steps          Shows step definitions (step implementations).
+          steps.bad      Shows BAD STEP-DEFINITION(s) (if any exist).
+          steps.catalog  Shows non-technical documentation for step definitions.
+          steps.code     Shows executed steps combined with their code.
+          steps.doc      Shows documentation for step definitions.
+          steps.missing  Shows undefined/missing steps definitions, implements them.
+          steps.usage    Shows how step definitions are used by steps.
+          tags           Shows tags (and how often they are used).
+          tags.location  Shows tags and the location where they are used.
+        """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 73 -------
+-----START OF RECORD 74 -------
+Input text: Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of the command line functions
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: Scenario: Good Formatter by using a Formatter-Alias
+      Given an empty file named "behave4me/__init__.py"
+      And a file named "behave4me/good_formatter.py" with:
+        """
+        from behave.formatter.base import Formatter
+
+        class SomeFormatter(Formatter):
+            name = "some"
+            description = "Very basic formatter for Some format."
+
+            def __init__(self, stream_opener, config):
+                super(SomeFormatter, self).__init__(stream_opener, config)
+        """
+      And a file named "behave.ini" with:
+        """
+        [behave.formatters]
+        some = behave4me.good_formatter:SomeFormatter
+        """
+      When I run "behave --format=help"
+      Then it should pass
+      And the command output should contain:
+        """
+        rerun          Emits scenario file locations of failing scenarios
+        some           Very basic formatter for Some format.
+        sphinx.steps   Generate sphinx-based documentation for step definitions.
+        """
+      And note that "the new formatter appears in the sorted list of formatters"
+      But the command output should not contain "UNAVAILABLE FORMATTERS"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 74 -------
+-----START OF RECORD 75 -------
+Input text: Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of the command line functions
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: Scenario Template: Bad Formatter with <formatter_syndrome>
+      Given a file named "behave.ini" with:
+        """
+        [behave.formatters]
+        <formatter_name> = <formatter_class>
+        """
+      When I run "behave --format=help"
+      Then it should pass
+      And the command output should contain:
+        """
+        UNAVAILABLE FORMATTERS:
+          <formatter_name>  <formatter_syndrome>: <problem_description>
+        """
+
+      @use.with_python.min_version=3.6
+      Examples: For Python >= 3.6
+        | formatter_name | formatter_class                           | formatter_syndrome  | problem_description |
+        | bad_formatter1 | behave4me.unknown:Formatter               | ModuleNotFoundError | No module named 'behave4me.unknown' |
+
+      @not.with_python.min_version=3.6
+      @use.with_pypy=true
+      Examples: For Python < 3.6
+        | formatter_name | formatter_class                           | formatter_syndrome  | problem_description |
+        | bad_formatter1 | behave4me.unknown:Formatter               | ModuleNotFoundError | No module named 'behave4me.unknown' |
+
+      @not.with_python.min_version=3.6
+      @not.with_pypy=true
+      Examples: For Python < 3.6
+        | formatter_name | formatter_class                           | formatter_syndrome  | problem_description |
+        | bad_formatter1 | behave4me.unknown:Formatter               | ModuleNotFoundError | No module named 'unknown' |
+
+      Examples:
+        | formatter_name | formatter_class                           | formatter_syndrome  | problem_description |
+        | bad_formatter2 | behave4me.bad_formatter:UnknownFormatter  | ClassNotFoundError  | behave4me.bad_formatter:UnknownFormatter |
+        | bad_formatter3 | behave4me.bad_formatter:InvalidFormatter1 | InvalidClassError   | is not a subclass-of Formatter |
+        | bad_formatter4 | behave4me.bad_formatter:InvalidFormatter2 | InvalidClassError   | is not a class |
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 75 -------
+-----START OF RECORD 76 -------
+Input text: Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of the command line functions
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output:  Scenario: Multiple Bad Formatters
+      Given a file named "behave.ini" with:
+        """
+        [behave.formatters]
+        bad_formatter2 = behave4me.bad_formatter:UnknownFormatter
+        bad_formatter3 = behave4me.bad_formatter:InvalidFormatter1
+        """
+      When I run "behave --format=help"
+      Then it should pass
+      And the command output should contain:
+        """
+        UNAVAILABLE FORMATTERS:
+          bad_formatter2  ClassNotFoundError: behave4me.bad_formatter:UnknownFormatter
+          bad_formatter3  InvalidClassError: is not a subclass-of Formatter
+        """
+      And note that "the list of UNAVAILABLE FORMATTERS is sorted-by-name"
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 76 -------
+-----START OF RECORD 77 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Feature Setup
+        Given a new working directory
+        And a file named "features/steps/steps.py" with:
+            """
+            from behave import step
+
+            @step('a step passes')
+            def step_passes(context):
+                pass
+
+            @step('a step fails')
+            def step_fails(context):
+                assert False, "XFAIL-STEP"
+            """
+
+
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 77 -------
+-----START OF RECORD 78 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output:  Scenario: Use JSON formatter on simple feature
+        Given a file named "features/simple_feature_with_name.feature" with:
+            """
+            Feature: Simple, empty Feature
+            """
+        When I run "behave -f json.pretty features/simple_feature_with_name.feature"
+        Then it should pass with:
+            """
+            0 features passed, 0 failed, 1 skipped
+            0 scenarios passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            [
+              {
+                "keyword": "Feature",
+                "location": "features/simple_feature_with_name.feature:1",
+                "name": "Simple, empty Feature",
+                "status": "skipped",
+                "tags": []
+              }
+            ]
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 78 -------
+-----START OF RECORD 79 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output:  Scenario: Use JSON formatter on simple feature with description
+        Given a file named "features/simple_feature_with_description.feature" with:
+            """
+            Feature: Simple feature with description
+
+                First feature description line.
+                Second feature description line.
+
+                Third feature description line (following an empty line).
+            """
+        When I run "behave -f json.pretty features/simple_feature_with_description.feature"
+        Then it should pass with:
+            """
+            0 features passed, 0 failed, 1 skipped
+            0 scenarios passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            [
+              {
+                "description": [
+                  "First feature description line.",
+                  "Second feature description line.",
+                  "Third feature description line (following an empty line)."
+                ],
+                "keyword": "Feature",
+                "location": "features/simple_feature_with_description.feature:1",
+                "name": "Simple feature with description",
+                "status": "skipped",
+                "tags": []
+              }
+            ]
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 79 -------
+-----START OF RECORD 80 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Use JSON formatter on simple feature with tags
+        Given a file named "features/simple_feature_with_tags.feature" with:
+            """
+            @foo @bar
+            Feature: Simple feature with tags
+            """
+        When I run "behave -f json.pretty features/simple_feature_with_tags.feature"
+        Then it should pass with:
+            """
+            0 features passed, 0 failed, 1 skipped
+            0 scenarios passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            [
+              {
+                "keyword": "Feature",
+                "location": "features/simple_feature_with_tags.feature:2",
+                "name": "Simple feature with tags",
+                "status": "skipped",
+                "tags": [
+                  "foo",
+                  "bar"
+                ]
+              }
+            ]
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 80 -------
+-----START OF RECORD 81 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Use JSON formatter with feature and one scenario without steps
+        Given a file named "features/simple_scenario.feature" with:
+            """
+            Feature:
+              Scenario: Simple scenario without steps
+            """
+        When I run "behave -f json.pretty features/simple_scenario.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            [
+              {
+                "elements": [
+                  {
+                    "keyword": "Scenario",
+                    "location": "features/simple_scenario.feature:2",
+                    "name": "Simple scenario without steps",
+                    "status": "passed",
+                    "steps": [],
+                    "tags": [],
+                    "type": "scenario"
+                  }
+                ],
+                "keyword": "Feature",
+                "location": "features/simple_scenario.feature:1",
+                "name": "",
+                "status": "passed",
+                "tags": []
+              }
+            ]
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 81 -------
+-----START OF RECORD 82 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output:  Scenario: Use JSON formatter with feature and one scenario with description
+        Given a file named "features/simple_scenario_with_description.feature" with:
+            """
+            Feature:
+              Scenario: Simple scenario with description but without steps
+
+                First scenario description line.
+                Second scenario description line.
+
+                Third scenario description line (after an empty line).
+            """
+        When I run "behave -f json.pretty features/simple_scenario_with_description.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            [
+              {
+                "elements": [
+                  {
+                    "description": [
+                      "First scenario description line.",
+                      "Second scenario description line.",
+                      "Third scenario description line (after an empty line)."
+                    ],
+                    "keyword": "Scenario",
+                    "location": "features/simple_scenario_with_description.feature:2",
+                    "name": "Simple scenario with description but without steps",
+                    "status": "passed",
+                    "steps": [],
+                    "tags": [],
+                    "type": "scenario"
+                  }
+                ],
+                "keyword": "Feature",
+                "location": "features/simple_scenario_with_description.feature:1",
+                "name": "",
+                "status": "passed",
+                "tags": []
+              }
+            ]
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 82 -------
+-----START OF RECORD 83 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Use JSON formatter with feature and one scenario with tags
+        Given a file named "features/simple_scenario_with_tags.feature" with:
+            """
+            Feature:
+
+              @foo
+              @bar
+              Scenario: Simple scenario with tags but without steps
+            """
+        When I run "behave -f json.pretty features/simple_scenario_with_tags.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            [
+              {
+                "elements": [
+                  {
+                    "keyword": "Scenario",
+                    "location": "features/simple_scenario_with_tags.feature:5",
+                    "name": "Simple scenario with tags but without steps",
+                    "status": "passed",
+                    "steps": [],
+                    "tags": [
+                      "foo",
+                      "bar"
+                    ],
+                    "type": "scenario"
+                  }
+                ],
+                "keyword": "Feature",
+                "location": "features/simple_scenario_with_tags.feature:1",
+                "name": "",
+                "status": "passed",
+                "tags": []
+              }
+            ]
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 83 -------
+-----START OF RECORD 84 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output:  Scenario: Use JSON formatter and embed binary data in report from two steps
+      Given a file named "features/json_embeddings.feature" with:
+          """
+          Feature:
+            Scenario: Use embeddings
+                Given "foobar" as plain text
+                And "red" as plain text
+          """
+      And a file named "features/steps/json_embeddings_steps.py" with:
+          """
+          from behave import step
+
+          @step('"{data}" as plain text')
+          def step_string(context, data):
+              context.attach("text/plain", data.encode("utf-8"))
+          """
+      When I run "behave -f json.pretty features/json_embeddings.feature"
+      Then it should pass with:
+          """
+          1 feature passed, 0 failed, 0 skipped
+          1 scenario passed, 0 failed, 0 skipped
+          """
+      And the command output should contain:
+          """
+                    "embeddings": [
+                      {
+                        "data": "Zm9vYmFy",
+                        "mime_type": "text/plain"
+                      }
+                    ],
+          """
+      And the command output should contain:
+          """
+                    "embeddings": [
+                      {
+                        "data": "cmVk",
+                        "mime_type": "text/plain"
+                      }
+                    ],
+          """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 84 -------
+-----START OF RECORD 85 -------
+Input text: {
+Scenario:Link:https://behave.readthedocs.io/en/latest/formatters/#formatters,https://behave.readthedocs.io/en/latest/formatters/#user-defined-formatters
+Formatters
+
+Given:The following formatters are currently supported:
+
+Name
+
+Mode
+
+Description
+
+help
+
+normal
+
+Shows all registered formatters.
+
+bad_steps
+
+dry-run
+
+Shows BAD STEP-DEFINITIONS (if any exist).
+
+json
+
+normal
+
+JSON dump of test run
+
+json.pretty
+
+normal
+
+JSON dump of test run (human readable)
+
+plain
+
+normal
+
+Very basic formatter with maximum compatibility
+
+pretty
+
+normal
+
+Standard colourised pretty formatter
+
+progress
+
+normal
+
+Shows dotted progress for each executed scenario.
+
+progress2
+
+normal
+
+Shows dotted progress for each executed step.
+
+progress3
+
+normal
+
+Shows detailed progress for each step of a scenario.
+
+rerun
+
+normal
+
+Emits scenario file locations of failing scenarios
+
+sphinx.steps
+
+dry-run
+
+Generate sphinx-based documentation for step definitions.
+
+steps
+
+dry-run
+
+Shows step definitions (step implementations).
+
+steps.catalog
+
+dry-run
+
+Shows non-technical documentation for step definitions.
+
+steps.code
+
+dry-run
+
+Shows executed steps combined with their code.
+
+steps.doc
+
+dry-run
+
+Shows documentation for step definitions.
+
+steps.usage
+
+dry-run
+
+Shows how step definitions are used by steps (in feature files).
+
+tags
+
+dry-run
+
+Shows tags (and how often they are used).
+
+tags.location
+
+dry-run
+
+Shows tags and the location where they are used.
+
+Note
+
+You can use more than one formatter during a test run. But in general you have only one formatter that writes to stdout.
+
+The “Mode” column indicates if a formatter is intended to be used in dry-run (--dry-run command-line option) or normal mode.
+
+Then:Refer to the description of command line arguments
+User-Defined Formatters
+Behave allows you to provide your own formatter (class):
+
+# -- USE: Formatter class "Json2Formatter" in python module "foo.bar"
+# NOTE: Formatter must be importable from python search path.
+behave -f foo.bar:Json2Formatter ...
+The usage of a user-defined formatter can be simplified by providing an alias name for it in the configuration file:
+
+# -- FILE: behave.ini
+# ALIAS SUPPORTS: behave -f json2 ...
+# NOTE: Formatter aliases may override builtin formatters.
+[behave.formatters]
+json2 = foo.bar:Json2Formatter
+If your formatter can be configured, you should use the userdata concept to provide them. The formatter should use the attribute schema:
+
+# -- FILE: behave.ini
+# SCHEMA: behave.formatter.<FORMATTER_NAME>.<ATTRIBUTE_NAME>
+[behave.userdata]
+behave.formatter.json2.use_pretty = true
+
+# -- SUPPORTS ALSO:
+#    behave -f json2 -D behave.formatter.json2.use_pretty ...
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: Scenario: Use JSON formatter with feature and one scenario with steps
+        Given a file named "features/scenario_with_steps.feature" with:
+            """
+            Feature:
+              Scenario: Simple scenario with with steps
+                  Given a step passes
+                  When a step passes
+                  Then a step passes
+                  And a step passes
+                  But a step passes
+            """
+        When I run "behave -f json.pretty features/scenario_with_steps.feature"
+        Then it should pass with:
+            """
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            """
+        And the command output should contain:
+            """
+            "steps": [
+                {
+                  "keyword": "Given",
+                  "location": "features/scenario_with_steps.feature:2",
+                  "match": {
+                    "arguments": [],
+                    "location": "features/steps/steps.py:3"
+                  },
+                  "name": "a step passes",
+                  "result": {
+                    "duration": XXX,
+                    "status": "passed",
+                  }
+                  "step_type": "given",
+                },
+                {
+                  "keyword": "When",
+                  "location": "features/scenario_with_steps.feature:3",
+                  "match": {
+                    "arguments": [],
+                    "location": "features/steps/steps.py:3"
+                  },
+                  "name": "a step passes",
+                  "result": {
+                    "duration": XXX,
+                    "status": "passed",
+                  }
+                  "step_type": "when",
+                },
+                {
+                  "keyword": "Then",
+                  "location": "features/scenario_with_steps.feature:4",
+                  "match": {
+                    "arguments": [],
+                    "location": "features/steps/steps.py:3"
+                  },
+                  "name": "a step passes",
+                  "result": {
+                    "duration": XXX,
+                    "status": "passed",
+                  }
+                  "step_type": "then",
+                },
+                {
+                  "keyword": "And",
+                  "location": "features/scenario_with_steps.feature:5",
+                  "match": {
+                    "arguments": [],
+                    "location": "features/steps/steps.py:3"
+                  },
+                  "name": "a step passes",
+                  "result": {
+                    "duration": XXX,
+                    "status": "passed",
+                  }
+                  "step_type": "then",
+                },
+                {
+                  "keyword": "But",
+                  "location": "features/scenario_with_steps.feature:6",
+                  "match": {
+                    "arguments": [],
+                    "location": "features/steps/steps.py:3"
+                  },
+                  "name": "a step passes",
+                  "result": {
+                    "duration": XXX,
+                    "status": "passed",
+                  }
+                  "step_type": "then",
+                }
+            ],
+            """
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 85 -------
+-----START OF RECORD 86 -------
+Input text: {
+<Scenario1>:  Cardinality: many this should be a comma-separated list, 
+<Given1>:I meet
+<When1>: I meet items{Alice, Bob, Charly}
+<Then1>:this should be a comma-separated list like:
+
+.. code-block:: gherkin
+
+    Scenario:
+        When I meet Alice
+         And I meet Alice, Bob, Charly
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+
+  <Scenario1>:  Many list, comma-separated
+  <Given1>:I go to a meeting
+  <When1>:I meet Alice, Bob, Dodo
+  <Then1>:the following persons are present:
+      | name   |
+      | Alice  |
+      | Bob    |
+      | Charly |
+      | Dodo   |
+
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 86 -------
+-----START OF RECORD 87 -------
+Input text: {
+<Scenario1>: Sometimes a solution is needed where a list of one or more items needs
+to be parsed. a list should be processed that is separated by the word "and",
+<Given1>:When I meet
+<When1>:I meet Alice, Bob, Charly,and (name)
+<Then1>a list should be processed
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\
+Expected Output: {
+
+
+  <Scenario1>: Many list with list-separator "and"
+  <Given1>:I go to a meeting
+  <When1>:I meet Alice and Bob and Charly
+  <Then1>:the following persons are present: name:Alice,Bob,Charly
+
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 87 -------
+-----START OF RECORD 88 -------
+Input text: {
+<Scenario1>:Cardinality: Zero (List of Type).Note that the case for zero or more items is not so often needed.
+
+Initially, a comma-separated list is processed, like:
+
+.. code-block:: gherkin
+
+    Scenario:
+        When I paint with red, green
+<Given1>:zero items 
+<When1>: Scenario:
+        When I paint with
+
+<Then1>: a comma-separated list is processed
+}
+
+ 
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: 
+{
+<Scenario1>:Empty list, comma-separated
+<Given1>:I am a painter
+<When1>:I paint with
+<Then1>:no colors are used
+}
+ 
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 88 -------
+-----START OF RECORD 89 -------
+Input text: {
+<Scenario4>: More (List of Type).
+<Given4>: I paint and more items 
+<When4>:I paint  more items
+<Then4>:a list that is separated with the word "and" is processed, like:
+
+.. code-block:: gherkin
+
+    Scenario:
+        When I paint with red and green
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: {
+<Scenario4>: Many list with list-separator "and"
+<Given4>: I am a painter
+<When4>:I paint with red and green and blue
+<Then4>:the following colors are used color:red and green and blue
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 89 -------
+-----START OF RECORD 90 -------
+Input text: {
+<Scenario3>:Cardinality:  More (List of Type)
+<Given3>: I paint and more items
+<When3>:I paint with red, green
+<Then3>:Initially, a comma-separated list is processed, like:
+
+.. code-block:: gherkin
+
+    Scenario:
+        When I paint with red, green
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: 
+{
+<Scenario3>:Many list, comma-separated
+<Given3>:I am a painter
+<When3>:I paint with red, green
+<Then3>:the following colors are used color:red,green
+
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 90 -------
+-----START OF RECORD 91 -------
+Input text: {
+<Scenario2>:Cardinality: Zero or More (List) a comma-separated list is processed
+<Given2>:I am a painter and more then zero item
+<Then2>:I paint with more then zero item.a comma-separated list is processed, like:
+
+.. code-block:: gherkin
+
+    Scenario:
+        When I paint with red, green
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario2>: List with one item, comma-separated
+<Given2>:I am a painter
+<Then2>:the following colors are used color:blue
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 91 -------
+-----START OF RECORD 92 -------
+Input text: {
+<Scenario>:at least onestep is not matched from Provide the Step Definitions as defined in items: offered_shop_items = [ "apples", "beef", "potatoes", "pork" ]
+<Given>"I buy {shop_item:ShopItem2}")
+    def step_impl(context, shop_item):
+        # EXAMPLE: "potatoes" => (selected_index=2, selected_text="potatoes")
+<When>  shop_item_id = context.shop.shop_item_index2id(selected_index)
+<And> context.shopping_cart.append(shop_item_id)
+<And> context.shopping_cart.append(shop_item_id)
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\
+Expected Output: {
+<Scenario>: Bad Case -- Undefined step definition for "diamonds"
+<Given> I go to a shop to buy ingredients for a meal
+<When> I buy apples
+<And> I buy pork
+<And> I buy diamonds
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 92 -------
+-----START OF RECORD 93 -------
+Input text: {
+<Scenario>:all steps is matched from Provide the Step Definitions as defined in items: offered_shop_items = [ "apples", "beef", "potatoes", "pork" ]
+<Given>"I buy {shop_item:ShopItem2}")
+    def step_impl(context, shop_item):
+        # EXAMPLE: "potatoes" => (selected_index=2, selected_text="potatoes")
+<When>  shop_item_id = context.shop.shop_item_index2id(selected_index)
+<And> context.shopping_cart.append(shop_item_id)
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario>: Good Case
+<Given>: I go to a shop to buy ingredients for a meal
+<When>: I buy apples
+<And> I buy beef
+
+<Scenario>: Bad Case -- Undefined step definition for "diamonds"
+<Given> I go to a shop to buy ingredients for a meal
+<When> I buy apples
+<And> I buy pork
+<And> I buy diamonds
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 93 -------
+-----START OF RECORD 94 -------
+Input text: {
+<Scenario>:
+<When>:given enumeration of
+    words/strings
+<Then> stores them in :py:attr:`parse_yesno.pattern` attribute
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario>:
+<When>: Romeo asks Julia: "Do you hate me?"
+<Then> the answer is "no"
+
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 94 -------
+-----START OF RECORD 95 -------
+Input text: {
+<Scenario>:
+<When> unique string-based words/strings
+<Then> An enumeration maps a number of unique string-based words/strings to values
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: {
+<Scenario>:
+<When> Romeo asks Julia: "Do you kiss me?"
+<Then> the answer is "jubilee"
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 95 -------
+-----START OF RECORD 96 -------
+Input text: {
+<Scenario>:
+<When>:Given enumeration of
+    words/strings
+<Then> An enumeration maps a number of unique string-based words/strings to values.stores them in :py:attr:`parse_yesno.pattern` attribute
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario>:
+<When>: Romeo asks Julia: "Do you love me?"
+<Then> the answer is "yes"
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 96 -------
+-----START OF RECORD 97 -------
+Input text: {"<Scenario>":"Goal: Show basics, make first steps Write the Feature Test",
+<Given>"First, install behave then Run behave Now, continue reading to learn how to make the most of behave.",
+"<When>":"The following feature file provides a simple feature with one scenario
+in the known ``Given ... When ... Then ...`` language style (BDD).To be able to execute the feature file, you need to provide a thin
+automation layer that represents the steps in the feature file
+with Python functions. These step functions provide the test automation layer
+(fixture code) that interacts with the ``system-under-test`` (SUT).",
+"<Then>":"Run the Feature Test When you run the feature file from above (with coloring enabled),When you run the feature file from above (with coloring disabled),As alternative you can run the feature with plain formatting
+(or another formatter)"}
+
+Links:https://behave.readthedocs.io/en/stable/tutorial.html#features & behave.behave directory tutorial01.rst.txt
+
+Generated Output: "},
+{"<Scenario>":"Goal: Show basics, make first steps Write the
+Expected Output: {"<Scenario>":"Run a simple test",
+"<Given>":"We have behave installed",
+"<When>":"We implement a test",
+"<Then>":"Behave will test it for us!"}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 97 -------
+-----START OF RECORD 98 -------
+Input text: {
+<Scenario1>:Fixtures using a decorator
+<Given1>:You can define `Django fixtures`_ using a function decorator. It is merely
+a convenient way to keep fixtures close to your steps.
+<Then1>:The decorator will
+load the fixtures in the ``before_scenario``, as documented above.
+}
+
+
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: {
+<Scenario1>:Load fixtures with the decorator
+<Given1>:a step with a fixture decorator
+<Then1>:the fixture should be loaded
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 98 -------
+-----START OF RECORD 99 -------
+Input text: {
+<Scenario3>:If you wanted different fixtures for different scenarios
+<Given3>:previously set fixtures carry # over to subsequent scenarios.
+<Then3>:This fixture would then be loaded before every scenario.
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: {
+<Scenario>:Load multiple fixtures and callables
+<Given>:a step with multiple fixtures
+<Then>:the fixture for the second scenario should be loaded
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 99 -------
+-----START OF RECORD 100 -------
+Input text: {
+<Scenario>:Fixtures included with the decorator will apply to all other steps that  they share a scenario with.
+<Given>:You can define `Django fixtures`_ using a function decorator. It is merely
+a convenient way to keep fixtures close to your steps.
+<Then>:per feature/scenario
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario>:A Subsequent scenario should only load its fixtures
+<Given>:a step with a second fixture decorator
+<Then>:I should only have one object
+}
+
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 100 -------
+-----START OF RECORD 101 -------
+Input text: {
+<Scenario>:Support for multiple databases.By default, Django only loads fixtures into the ``default`` database.
+<Then>: Use ``before_scenario`` to load the fixtures in all of the databases you have
+configured if your tests rely on the fixtures being loaded in all of them.
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: <Scenario>:Load fixtures with databases option
+<Then>: databases should be set to all database in the Django settings
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 101 -------
+-----START OF RECORD 102 -------
+Input text: {
+<Scenario>:Fixture Loading
+<Then>: behave-django can load your fixtures for you per feature/scenario. There are
+two approaches to this * loading the fixtures in ``environment.py``, or
+* using a decorator on your step function
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: <Scenario>:Load fixtures
+<Then>: the fixture should be loaded
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 102 -------
+-----START OF RECORD 103 -------
+Input text: {
+
+<Scenario>:You could also have fixtures per Feature too
+<Then>:the sequences should be reset # Resetting fixtures, otherwise previously set fixtures carry # over to subsequent features.
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers;
+
+use App\Http\
+Expected Output: <Scenario3>:Load fixtures then reset sequences
+<Then3>:the sequences should be reset
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 103 -------
+-----START OF RECORD 104 -------
+Input text: {
+
+<Scenario>:in ``environment.py`` we can load our context with the fixtures array.
+<Then>:This fixture would then be loaded before every scenario.
+
+}
+Generated Output: <?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\
+Expected Output: {
+<Scenario>:Load fixtures for this scenario and feature
+<Then>:the fixture for the second scenario should be loaded
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 104 -------
+-----START OF RECORD 105 -------
+Input text: {
+<Scenario>:"Using Page Objects With *behave-django* you can use the `Page Object pattern`_ and work on a
+natural abstraction layer for the content or behavior your web application
+produces.  This is a popular approach to make your tests more stable and
+your code easier to read.",
+<When1>: 'I am on the Welcome page.A ``PageObject`` instance automatically loads and parses the page you
+specify by its ``page`` attribute.'
+<Then>:"'You then have access to the following attributes ``request``
+    The HTTP request used by the Django test client to fetch the document.
+    This is merely a convenient alias for ``response.request``.
+
+``response``
+    The Django test client's HTTP response object.  Use this to verify the
+    actual HTTP response related to the retrieved document.
+
+``document``
+    The parsed content of the response.  This is, technically speaking, a
+    `Beautiful Soup`_ object.  You *can* use this to access and verify any
+    part of the document content, though it's recommended that you only
+    access the elements you specify with the ``elements`` attribute, using
+    the appropriate helper methods."
+<And>:"helpers to access your page object's elements:
+
+``get_link(name) -> Link``
+    A subdocument representing a HTML anchor link, retrieved from
+    ``document`` using the CSS selector specified in ``elements[name]``.
+    The returned ``Link`` object provides a ``click()`` method to trigger
+    loading the link's URL, which again returns a ``PageObject``."
+<When2>:"I click on the "About" link"
+<Then2>: "The returned ``Link`` object provides a ``click()`` method to trigger
+loading the link's URL, which again returns a ``PageObject``.The About page is loaded"
+}
+
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario>: Welcome page object returns a valid (Beautiful Soup) document,
+<When1>: I instantiate the Welcome page object
+<Then>:it provides a valid Beautiful Soup document
+<And>:get_link() returns the link subdocument
+<When2>:I call click() on the link
+<Then2>:it loads a new PageObject
+
+}
+
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 105 -------
+-----START OF RECORD 106 -------
+Input text: {
+<Scenario>:Django’s Test Client
+<When>:"If you only use Django's test client"
+<Then>:"*behave* tests can run much
+quicker with the ``--simple`` command line option.In this case transaction
+rollback is used for test automation instead of flushing the database after
+each scenario, just like in Django's standard ``TestCase``.
+
+}
+Generated Output: /*
+ * Copyright (c) 2008-2021, Hazelcast, Inc.
+Expected Output: {
+<Scenario>: Django's test client
+When I use django's test client to visit "/"
+Then it should return a successful response
+}
+F1-score: 0.0
+BLEU score: 0
+Exact Match: 0
+-----END OF RECORD 106 -------s
